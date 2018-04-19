@@ -1,4 +1,12 @@
 <mat-tab-group>
-  <mat-tab label="Tab 1"><app-table-basic></app-table-basic></mat-tab>
-  <mat-tab label="Tab 2"><app-heroes></app-heroes></mat-tab>
+  <mat-tab label="Физичесские лица">
+    <mat-tab-group>
+      <mat-tab label="Общая информация"><app-table-basic></app-table-basic></mat-tab>
+      <mat-tab label="ДУ"><h2>ДУ</h2></mat-tab>
+      <mat-tab label="Исковые заявления"><h2>Исковые заявления</h2></mat-tab>
+      <mat-tab label="Исполнительное производство"><h2>Исполнительное производство</h2></mat-tab>
+      <mat-tab label="Итоги работы"><h2>Итоги работы</h2></mat-tab>
+    </mat-tab-group>
+  </mat-tab>
+  <mat-tab label="Hero app"><app-heroes></app-heroes></mat-tab>
 </mat-tab-group>
