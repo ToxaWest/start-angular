@@ -27,7 +27,7 @@ export class DialogModalComponent {
 }
 
 @Component({
-    selector: 'dialog-content-modal',
-    templateUrl: 'dialog-content-modal.html'
+    selector: 'app-dialog-content-modal',
+    templateUrl: './dialog-content-modal.html'
 })
 export class DialogContentModal {}

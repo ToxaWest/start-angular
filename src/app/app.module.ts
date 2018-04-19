@@ -5,9 +5,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialAppModule } from './ngmaterial.module';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
-import { TableComponent } from './table-basic-example/table-basic-example';
+import {TableComponent, TableModalDialog} from './table-basic-example/table-basic-example';
 import { TabsComponent } from './tabs/tabs.component';
-import { DialogModalComponent , DialogContentModal } from './dialog-modal/dialog-modal.component'
+import { DialogModalComponent , DialogContentModal } from './dialog-modal/dialog-modal.component';
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import { DialogModalComponent , DialogContentModal } from './dialog-modal/dialog
     TableComponent,
     TabsComponent,
     DialogModalComponent,
-    DialogContentModal
+    DialogContentModal,
+    TableModalDialog
   ],
   imports: [
       BrowserModule,
@@ -27,7 +28,7 @@ import { DialogModalComponent , DialogContentModal } from './dialog-modal/dialog
       BrowserAnimationsModule
   ],
   providers: [],
-  entryComponents: [DialogContentModal, DialogModalComponent],
-  bootstrap: [AppComponent ,DialogModalComponent]
+  entryComponents: [DialogContentModal, DialogModalComponent, TableModalDialog],
+  bootstrap: [AppComponent ,DialogModalComponent , TableModalDialog]
 })
 export class AppModule { }
