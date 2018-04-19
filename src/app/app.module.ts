@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { TableComponent } from './table-basic-example/table-basic-example';
 import { TabsComponent } from './tabs/tabs.component';
+import { DialogModalComponent , DialogContentModal } from './dialog-modal/dialog-modal.component'
 
 
 @NgModule({
@@ -14,7 +15,9 @@ import { TabsComponent } from './tabs/tabs.component';
     AppComponent,
     HeroesComponent,
     TableComponent,
-    TabsComponent
+    TabsComponent,
+    DialogModalComponent,
+    DialogContentModal
   ],
   imports: [
       BrowserModule,
@@ -24,6 +27,7 @@ import { TabsComponent } from './tabs/tabs.component';
       BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  entryComponents: [DialogContentModal, DialogModalComponent],
+  bootstrap: [AppComponent ,DialogModalComponent]
 })
 export class AppModule { }
