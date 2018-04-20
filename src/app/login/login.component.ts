@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+export interface Person {
+    login: string;
+    pass: string;
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,17 +13,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-    logined = false;
+  logined:boolean = false;
 
-    onSubmit(person: Person){
-      console.log(person);
-      this.logined = person.login === 'wise' && person.pass === 'wise' ? true : false;
+  onSubmit(person: Person){
+    this.logined = person.login === 'wise' && person.pass === 'wise' ? true : false;
   }
-
-
-
-}
-export interface Person {
-    login: string;
-    pass: string;
 }
