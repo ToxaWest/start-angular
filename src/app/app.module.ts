@@ -9,6 +9,7 @@ import { TableComponent, TableModalDialog} from './table-basic-example/table-bas
 import { TabsComponent } from './tabs/tabs.component';
 import { ExpandComponent } from './expand/expand.component';
 import {TableDyComponent, TableDyModalDialog} from './table-dy/table-dy.component';
+import {LoginComponent} from './login/login.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {TableDyComponent, TableDyModalDialog} from './table-dy/table-dy.componen
     ExpandComponent,
     TableDyComponent,
     TableDyModalDialog,
+    LoginComponent,
 ],
   imports: [
       BrowserModule,

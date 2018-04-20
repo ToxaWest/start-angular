@@ -1,0 +1,15 @@
+<div *ngIf="logined">
+  <app-tabs></app-tabs>
+</div>
+<div *ngIf="logined === false">
+  <h2 >Вход</h2>
+  <form class="example-form" #personForm="ngForm" (ngSubmit)="onSubmit(personForm.value)">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Логин" required  [(ngModel)]="login" name="login">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput type="password" placeholder="Password"  required [(ngModel)]="pass"  name="pass">
+    </mat-form-field>
+    <button mat-raised-button type="submit">Login</button>
+  </form>
+</div>
