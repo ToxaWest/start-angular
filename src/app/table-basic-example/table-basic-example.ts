@@ -1,6 +1,6 @@
-import {Component, NgModule, AfterViewInit, ViewChild, OnInit} from '@angular/core';
-import {MatSort, MatPaginator, MatTableDataSource, MatDialog} from '@angular/material';
-import {CdkTableModule} from '@angular/cdk/table';
+import { Component, NgModule, AfterViewInit, ViewChild, Inject } from '@angular/core';
+import { MatSort, MatPaginator, MatTableDataSource, MatDialog,  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { CdkTableModule } from '@angular/cdk/table';
 import { ELEMENT_DATA } from '../mock-table';
 import { Element } from '../table';
 
@@ -31,20 +31,14 @@ export class TableComponent implements AfterViewInit {
 
     constructor(public dialog: MatDialog) {}
 
-    openDialog() {
-        console.log('asd');
-        const dialogRef = this.dialog.open(TableModalDialog, {
-            height: '650px'
+    openDialog(element: Element): void {
+        let dialogRef = this.dialog.open(TableModalDialog, {
+            width: '600px',
+            data: element
         });
-
         dialogRef.afterClosed().subscribe(result => {
-            console.log(`Dialog result: ${result}`);
+            this.selectedUser = result;
         });
-    }
-
-    onSelect(element: Element): void {
-        // this.openDialog();
-        this.selectedUser = element;
     }
 
     ngAfterViewInit() {
@@ -56,4 +50,13 @@ export class TableComponent implements AfterViewInit {
     selector: 'app-table-content-modal',
     templateUrl: './table-popup.html'
 })
-export class TableModalDialog implements OnInit  {}
+export class TableModalDialog {
+
+    constructor(
+        public dialogRef: MatDialogRef<TableModalDialog>,
+        @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+    // onNoClick(): void {
+    //     this.dialogRef.close();
+    // }
+}

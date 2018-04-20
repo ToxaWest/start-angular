@@ -1,7 +1,7 @@
 <div class="example-container mat-elevation-z8">
   <div class="example-header">
     <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Поиск">
     </mat-form-field>
   </div>
   <mat-table #table [dataSource]="dataSource" matSort>
@@ -11,8 +11,7 @@
     </ng-container>
     <ng-container matColumnDef="number">
       <mat-header-cell *matHeaderCellDef mat-sort-header> № л/с </mat-header-cell>
-      <mat-cell *matCellDef="let element" [class.selected]="element === selectedUser"
-                (click)="onSelect(element)"> {{element.number}} </mat-cell>
+      <mat-cell *matCellDef="let element" (click)="openDialog(element)"> {{element.number}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="stage">
       <mat-header-cell *matHeaderCellDef> Этап </mat-header-cell>
@@ -60,19 +59,4 @@
                  [pageSizeOptions]="[5, 10, 20]"
                  [showFirstLastButtons]="true">
   </mat-paginator>
-</div>
-<div *ngIf="selectedUser">
-  <h3>Редактирование <b>{{ selectedUser.name }}</b></h3>
-  <mat-form-field class="example-full-width">
-    <input matInput [(ngModel)]="selectedUser.name" placeholder="Имя">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input matInput [(ngModel)]="selectedUser.address" placeholder="Адрес">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input matInput [(ngModel)]="selectedUser.month" placeholder="Месячные начисления">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input matInput [(ngModel)]="selectedUser.debt" placeholder="Долг">
-  </mat-form-field>
 </div>

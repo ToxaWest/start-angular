@@ -1,23 +1,20 @@
-<h2 mat-dialog-title>Install Angular</h2>
+<h2 mat-dialog-title>Редактирование <b>{{ data.name }}</b></h2>
 <mat-dialog-content>
-
-    <div *ngIf="selectedUser">
-        <h3>Редактирование <b>{{ selectedUser.name }}</b></h3>
+    <div>
         <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="selectedUser.name" placeholder="Имя">
+            <input matInput [(ngModel)]="data.name" placeholder="Имя">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="selectedUser.address" placeholder="Адрес">
+            <input matInput [(ngModel)]="data.address" placeholder="Адрес">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="selectedUser.month" placeholder="Месячные начисления">
+            <input matInput [(ngModel)]="data.month" placeholder="Месячные начисления">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="selectedUser.debt" placeholder="Долг">
+            <input matInput [(ngModel)]="data.debt" placeholder="Долг">
         </mat-form-field>
     </div>
 </mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
-</mat-dialog-actions>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

@@ -1,0 +1,14 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Обозначение этапов
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-grid-list cols="2" rowHeight="10:1">
+      <mat-grid-tile *ngFor="let step of steps" ><span [style.background-color]="step.color" class="step-name" >{{step.name}}</span> - Этап "{{step.description}}"</mat-grid-tile>
+    </mat-grid-list>
+
+  </mat-expansion-panel>
+</mat-accordion>
