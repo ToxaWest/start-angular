@@ -8,6 +8,7 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { TableComponent, TableModalDialog} from './table-basic-example/table-basic-example';
 import { TabsComponent } from './tabs/tabs.component';
 import { ExpandComponent } from './expand/expand.component';
+import { TableDyComponent } from './table-dy/table-dy.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ExpandComponent } from './expand/expand.component';
     TabsComponent,
     TableModalDialog,
     ExpandComponent,
+    TableDyComponent,
 ],
   imports: [
       BrowserModule,
