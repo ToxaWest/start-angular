@@ -1,5 +1,4 @@
 export interface Element {
-    select: boolean;
     number: number;
     stage: string;
     name: string;
