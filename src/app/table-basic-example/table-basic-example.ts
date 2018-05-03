@@ -3,8 +3,8 @@ import { MatSort, MatPaginator, MatTableDataSource, MatDialog,  MatDialogRef, MA
 import { CdkTableModule } from '@angular/cdk/table';
 import { ELEMENT_DATA } from '../mock-table';
 import { Element } from '../table';
-import * as pdfMake from '../../../node_modules/pdfmake/build/pdfmake';
-import * as pdfFonts from '../../../node_modules/pdfmake/build/vfs_fonts.js';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
 @NgModule({
     exports: [
@@ -49,15 +49,9 @@ export class TableComponent implements AfterViewInit {
         pdfMake.vfs = pdfFonts.pdfMake.vfs;
         for (let i = 0; i < this.selected.length; i++) {
             selectedPrecontent.push(
-                { text: this.selected[i].name + ' ' + this.selected[i].number , style: 'header' , fontSize: 22 , bold: true }
-            );
-            selectedPrecontent.push(
-                { text: 'Адрес: ' + this.selected[i].address , fontSize: 16}
-            );
-            selectedPrecontent.push(
-                { text: 'Долг: ' + this.selected[i].debt , fontSize: 16}
-            );
-            selectedPrecontent.push(
+                { text:  this.selected[i].name + ' ' + this.selected[i].number , style: 'header' , fontSize: 22 , bold: true },
+                { text: 'Адрес: ' + this.selected[i].address , fontSize: 16},
+                { text: 'Долг: ' + this.selected[i].debt , fontSize: 16},
                 { text: 'Дата: ' + this.selected[i].date , fontSize: 16 }
             );
         }
