@@ -5,12 +5,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialAppModule } from './ngmaterial.module';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
-import { TableComponent, TableModalDialog} from './table-basic-example/table-basic-example';
+import { TableComponent, TableModalDialogComponent} from './table-basic-example/table-basic-example';
 import { TabsComponent } from './tabs/tabs.component';
 import { ExpandComponent } from './expand/expand.component';
 import { TableDyComponent, TableDyModalDialog } from './table-dy/table-dy.component';
 import { LoginComponent } from './login/login.component';
-import { PdfGenerateComponent } from './pdf-generate/pdf-generate.component';
 
 @NgModule({
   declarations: [
@@ -18,22 +17,21 @@ import { PdfGenerateComponent } from './pdf-generate/pdf-generate.component';
     HeroesComponent,
     TableComponent,
     TabsComponent,
-    TableModalDialog,
+    TableModalDialogComponent,
     ExpandComponent,
     TableDyComponent,
     TableDyModalDialog,
     LoginComponent,
-    PdfGenerateComponent,
 ],
   imports: [
-      BrowserModule,
-      FormsModule,
-      TableComponent,
-      MaterialAppModule,
-      BrowserAnimationsModule
+    BrowserModule,
+    FormsModule,
+    TableComponent,
+    MaterialAppModule,
+    BrowserAnimationsModule
   ],
   providers: [],
-  entryComponents: [TableModalDialog, TableDyModalDialog],
+  entryComponents: [TableModalDialogComponent, TableDyModalDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
