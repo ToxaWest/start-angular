@@ -10,6 +10,8 @@ import { TabsComponent } from './tabs/tabs.component';
 import { ExpandComponent } from './expand/expand.component';
 import { TableDyComponent, TableDyModalDialog } from './table-dy/table-dy.component';
 import { LoginComponent } from './login/login.component';
+import { RouterModule } from '@angular/router';
+import {HeroService} from './heroes/hero.service';
 
 @NgModule({
   declarations: [
@@ -28,10 +30,26 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     TableComponent,
     MaterialAppModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot([
+        {
+            path: 'heroes',
+            component: HeroesComponent
+        },
+        {
+            path: '',
+            component: TabsComponent
+        },
+        {
+            path: 'login',
+            component: LoginComponent
+        }
+    ])
   ],
-  providers: [],
+  providers: [HeroService],
   entryComponents: [TableModalDialogComponent, TableDyModalDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
