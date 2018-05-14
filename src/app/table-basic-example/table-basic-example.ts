@@ -1,8 +1,8 @@
 import {Component, NgModule, AfterViewInit, ViewChild, Inject, OnInit} from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource, MatDialog,  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
-import { ELEMENT_DATA } from '../mock-table';
-import { Element } from '../table';
+import { ELEMENT_DATA } from './mock-table';
+import { Element } from './table';
 import { Template1 } from './template';
 import {TableBasicService} from './table-basic.service';
 
@@ -32,7 +32,7 @@ export class TableComponent implements AfterViewInit , OnInit {
         this.dataSource.filter = filterValue;
     }
 
-    constructor(public dialog: MatDialog, private tablebasicservice: TableBasicService ) {}
+    constructor(public dialog: MatDialog, private tableBasicService: TableBasicService ) {}
 
     openDialog(element: Element): void {
         const dialogRef = this.dialog.open(TableModalDialogComponent, {
@@ -45,7 +45,7 @@ export class TableComponent implements AfterViewInit , OnInit {
     }
 
     getUsers(): void {
-        this.tablebasicservice.getUsersSlowly().then(selectedUser => this.selectedUser = selectedUser);
+        this.tableBasicService.getUsersSlowly().then(selectedUser => this.selectedUser = selectedUser);
     }
 
     ngOnInit() {
@@ -54,6 +54,10 @@ export class TableComponent implements AfterViewInit , OnInit {
 
     PrintPdf() {
         Template1.PrintPdf(this.selected);
+    }
+
+    PrintAll() {
+        Template1.PrintPdf(this.selectedUser);
     }
 
     selectedToPdf(element: Element) {

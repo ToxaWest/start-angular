@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Element} from '../table';
-import {ELEMENT_DATA} from '../mock-table';
+import {Element} from '../table-basic-example/table';
+import {ELEMENT_DATA} from '../table-basic-example/mock-table';
 
 @Injectable()
 export class PdfToPrintTestService {

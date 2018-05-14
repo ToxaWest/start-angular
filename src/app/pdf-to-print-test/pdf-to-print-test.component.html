@@ -2,14 +2,13 @@
   <li *ngFor="let user of users" style="list-style: none; page-break-after: always">
     <div style="display: flex; align-items: center; justify-content: space-between">
       <img src="/assets/logo.jpg" style="width: 50px"/>
-      <h2 style="text-align: center" >К О М У Н А Л Ь Н Е П І Д П Р И Є М С Т В О<br>„Ж И Л К О М С Е Р В І С”</h2>
+      <h3 style="text-align: center" >К О М У Н А Л Ь Н Е П І Д П Р И Є М С Т В О<br>„Ж И Л К О М С Е Р В І С”</h3>
       <div style="width: 50px"></div>
     </div>
     <hr>
     <div style="text-align: right">{{user.name}}</div>
     <div style="text-align: right">{{user.address}}</div>
-    <br>
-    <h2 style="text-align: center" >ВЫМОГА</h2>
+    <h3 style="text-align: center" >ВЫМОГА</h3>
     <p>Доводимо до Вашого відома, що по Вашому особовому рахунку №{{user.number}} станом на {{todayDate}}року виникла заборгованість перед КП «Жилкомсервіс» в сумі {{user.debt}}грн.
       У зв'язку з наявністю у Вас невиконаних зобов'язань щодо оплати послуг з утримання будинків і споруд та прибудинкових територій, з метою попередження звернення КП «Жилкомсервіс» до суду з заявою/позовом
       про стягнення з Вас заборгованості за послуги з утримання будинків і споруд та прибудинкових територій з урахуванням індексу інфляції та трьох відсотків річних, а також відшкодування судового збору, розмір якого з 01.01.2018 становить

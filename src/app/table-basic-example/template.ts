@@ -46,6 +46,6 @@ export class Template1 {
                 }
             }
         };
-        pdfMake.createPdf(docDefinition).open();
+        pdfMake.createPdf(docDefinition).download();
     }
 }

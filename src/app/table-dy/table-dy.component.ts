@@ -1,8 +1,8 @@
 import { Component, NgModule, AfterViewInit, ViewChild, Inject } from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource, MatDialog,  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
-import { ELEMENT_DATA } from '../mock-table-dy';
-import {Element} from '../table-dy';
+import { ELEMENT_DATA } from './mock-table-dy';
+import {Element} from './table-dy';
 
 @NgModule({
     exports: [
