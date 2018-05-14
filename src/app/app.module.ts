@@ -11,7 +11,12 @@ import { ExpandComponent } from './expand/expand.component';
 import { TableDyComponent, TableDyModalDialog } from './table-dy/table-dy.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
-import {HeroService} from './heroes/hero.service';
+import { HeroService} from './heroes/hero.service';
+import { CreatePdfComponent} from './create-pdf/create-pdf.component';
+import { PdfService } from './create-pdf/pdf.service';
+import {TableBasicService} from './table-basic-example/table-basic.service';
+import {PdfToPrintTestComponent} from './pdf-to-print-test/pdf-to-print-test.component';
+import {PdfToPrintTestService} from './pdf-to-print-test/pdf-to-print-test.service';
 
 @NgModule({
   declarations: [
@@ -24,6 +29,8 @@ import {HeroService} from './heroes/hero.service';
     TableDyComponent,
     TableDyModalDialog,
     LoginComponent,
+    CreatePdfComponent,
+    PdfToPrintTestComponent,
 ],
   imports: [
     BrowserModule,
@@ -43,10 +50,18 @@ import {HeroService} from './heroes/hero.service';
         {
             path: 'login',
             component: LoginComponent
+        },
+        {
+            path: 'create-pdf',
+            component: CreatePdfComponent
+        },
+        {
+            path: 'pdf-to-print',
+            component: PdfToPrintTestComponent
         }
     ])
   ],
-  providers: [HeroService],
+  providers: [HeroService , PdfService , TableBasicService, PdfToPrintTestService],
   entryComponents: [TableModalDialogComponent, TableDyModalDialog],
   bootstrap: [AppComponent]
 })

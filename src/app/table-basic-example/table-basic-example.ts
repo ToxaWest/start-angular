@@ -1,9 +1,10 @@
-import { Component, NgModule, AfterViewInit, ViewChild, Inject } from '@angular/core';
+import {Component, NgModule, AfterViewInit, ViewChild, Inject, OnInit} from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource, MatDialog,  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { ELEMENT_DATA } from '../mock-table';
 import { Element } from '../table';
 import { Template1 } from './template';
+import {TableBasicService} from './table-basic.service';
 
 @NgModule({
     exports: [
@@ -14,12 +15,13 @@ import { Template1 } from './template';
   selector: 'app-table-basic',
   styleUrls: ['table-basic-example.css'],
   templateUrl: 'table-basic-example.html',
+  providers: [TableBasicService],
 })
-export class TableComponent implements AfterViewInit {
+export class TableComponent implements AfterViewInit , OnInit {
     selected = [];
     displayedColumns = ['select', 'number', 'stage', 'name', 'date', 'address', 'month', 'debt', 'human', 'privileges', 'privatization'];
     dataSource = new MatTableDataSource(ELEMENT_DATA);
-    selectedUser: Element;
+    selectedUser: Element[];
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -30,7 +32,7 @@ export class TableComponent implements AfterViewInit {
         this.dataSource.filter = filterValue;
     }
 
-    constructor(public dialog: MatDialog) {}
+    constructor(public dialog: MatDialog, private tablebasicservice: TableBasicService ) {}
 
     openDialog(element: Element): void {
         const dialogRef = this.dialog.open(TableModalDialogComponent, {
@@ -40,6 +42,14 @@ export class TableComponent implements AfterViewInit {
         dialogRef.afterClosed().subscribe(result => {
             this.selectedUser = result;
         });
+    }
+
+    getUsers(): void {
+        this.tablebasicservice.getUsersSlowly().then(selectedUser => this.selectedUser = selectedUser);
+    }
+
+    ngOnInit() {
+        this.getUsers();
     }
 
     PrintPdf() {
