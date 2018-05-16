@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Element } from '../table-basic-example/template-interface';
-import { ELEMENT_DATA } from '../table-basic-example/template-data';
+import { Element } from '../table-general-info/template-interface';
+import { ELEMENT_DATA } from '../table-general-info/template-data';
 
 @Injectable()
 export class PdfService {

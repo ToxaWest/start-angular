@@ -1,7 +1,6 @@
-import {Component, NgModule, AfterViewInit, ViewChild, Inject, OnInit} from '@angular/core';
+import {Component, NgModule, ViewChild, Inject, OnInit} from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource, MatDialog,  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
-import { ELEMENT_DATA } from './mock-table';
 import { Element } from './table';
 import { Template1 } from './template';
 import {TableBasicService} from './table-basic.service';
@@ -13,15 +12,15 @@ import {TableBasicService} from './table-basic.service';
 })
 @Component({
   selector: 'app-table-basic',
-  styleUrls: ['table-basic-example.css'],
-  templateUrl: 'table-basic-example.html',
+  styleUrls: ['table-general-info.css'],
+  templateUrl: 'table-general-info.html',
   providers: [TableBasicService],
 })
-export class TableComponent implements AfterViewInit , OnInit {
+export class TableComponent implements OnInit {
     selected = [];
     displayedColumns = ['select', 'number', 'stage', 'name', 'date', 'address', 'month', 'debt', 'human', 'privileges', 'privatization'];
-    dataSource = new MatTableDataSource(ELEMENT_DATA);
-    selectedUser: Element[];
+    dataSource;
+    selectedUser;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -45,7 +44,10 @@ export class TableComponent implements AfterViewInit , OnInit {
     }
 
     getUsers(): void {
-        this.tableBasicService.getUsersSlowly().then(selectedUser => this.selectedUser = selectedUser);
+        this.tableBasicService.getUsersSlowly()
+            .then(dataSource => this.dataSource = new MatTableDataSource(dataSource))
+            .then(dataSource => this.AfterViewInit(dataSource))
+            .then(selectedUser => this.selectedUser = selectedUser);
     }
 
     ngOnInit() {
@@ -56,10 +58,6 @@ export class TableComponent implements AfterViewInit , OnInit {
         Template1.PrintPdf(this.selected);
     }
 
-    PrintAll() {
-        Template1.PrintPdf(this.selectedUser);
-    }
-
     selectedToPdf(element: Element) {
         const ElementSelect = this.selected.indexOf(element);
         ElementSelect !== -1 ?
@@ -68,9 +66,9 @@ export class TableComponent implements AfterViewInit , OnInit {
         ;
     }
 
-    ngAfterViewInit() {
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+    AfterViewInit(data) {
+        data.paginator = this.paginator;
+        data.sort = this.sort;
     }
 }
 @Component({

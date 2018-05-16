@@ -11,7 +11,7 @@ export class TableBasicService {
 
     getUsersSlowly(): Promise<Element[]> {
         return new Promise(resolve => {
-            setTimeout(() => resolve(this.getUsers()), 5000);
+            setTimeout(() => resolve(this.getUsers()), 1000);
         });
     }
 

@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialAppModule } from './ngmaterial.module';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
-import { TableComponent, TableModalDialogComponent} from './table-basic-example/table-basic-example';
+import { TableComponent, TableModalDialogComponent} from './table-general-info/table-general-info';
 import { TabsComponent } from './tabs/tabs.component';
 import { ExpandComponent } from './expand/expand.component';
 import { TableDyComponent, TableDyModalDialog } from './table-dy/table-dy.component';
@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
 import { HeroService} from './heroes/hero.service';
 import { CreatePdfComponent} from './create-pdf/create-pdf.component';
 import { PdfService } from './create-pdf/pdf.service';
-import {TableBasicService} from './table-basic-example/table-basic.service';
+import {TableBasicService} from './table-general-info/table-basic.service';
 import {PdfToPrintTestComponent} from './pdf-to-print-test/pdf-to-print-test.component';
 import {PdfToPrintTestService} from './pdf-to-print-test/pdf-to-print-test.service';
 

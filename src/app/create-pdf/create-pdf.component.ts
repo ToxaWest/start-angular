@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import { Element } from '../table-basic-example/template-interface';
+import { Element } from '../table-general-info/template-interface';
 import {PdfService} from './pdf.service';
-import * as _ from 'underscore';
 
 @Component({
   selector: 'app-create-pdf',
