@@ -4,6 +4,7 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { Element } from '../services/table';
 import { Template1 } from './template';
 import {TableBasicService} from '../services/table-basic.service';
+import {PdfToPrintTestComponent} from '../pdf-to-print-test/pdf-to-print-test.component';
 
 @NgModule({
     exports: [
@@ -54,8 +55,8 @@ export class TableComponent implements OnInit {
         this.getUsers();
     }
 
-    PrintPdf() {
-        Template1.PrintPdf(this.selected);
+    PrintPdf() : void{
+        PdfToPrintTestComponent.getUsersPdf(this.selected);
     }
 
     selectedToPdf(element: Element) {
