@@ -13,10 +13,10 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { HeroService} from './heroes/hero.service';
 import { CreatePdfComponent} from './create-pdf/create-pdf.component';
-import { PdfService } from './create-pdf/pdf.service';
-import {TableBasicService} from './table-general-info/table-basic.service';
+import { PdfService } from './services/pdf.service';
+import {TableBasicService} from './services/table-basic.service';
 import {PdfToPrintTestComponent} from './pdf-to-print-test/pdf-to-print-test.component';
-import {PdfToPrintTestService} from './pdf-to-print-test/pdf-to-print-test.service';
+import {PdfToPrintTestService} from './services/pdf-to-print-test.service';
 
 @NgModule({
   declarations: [

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {PdfToPrintTestService} from './pdf-to-print-test.service';
-import { Element } from '../table-general-info/table';
+import {PdfToPrintTestService} from '../services/pdf-to-print-test.service';
+import { Element } from '../services/table';
 
 @Component({
   selector: 'app-pdf-to-print-test',

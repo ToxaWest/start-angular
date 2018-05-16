@@ -1,9 +1,9 @@
 import {Component, NgModule, ViewChild, Inject, OnInit} from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource, MatDialog,  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
-import { Element } from './table';
+import { Element } from '../services/table';
 import { Template1 } from './template';
-import {TableBasicService} from './table-basic.service';
+import {TableBasicService} from '../services/table-basic.service';
 
 @NgModule({
     exports: [
