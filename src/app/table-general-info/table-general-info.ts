@@ -2,9 +2,9 @@ import {Component, NgModule, ViewChild, Inject, OnInit} from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource, MatDialog,  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { Element } from '../services/table';
-import { Template1 } from './template';
 import {TableBasicService} from '../services/table-basic.service';
 import {PdfToPrintTestComponent} from '../pdf-to-print-test/pdf-to-print-test.component';
+import {Router} from '@angular/router';
 
 @NgModule({
     exports: [
@@ -32,7 +32,7 @@ export class TableComponent implements OnInit {
         this.dataSource.filter = filterValue;
     }
 
-    constructor(public dialog: MatDialog, private tableBasicService: TableBasicService ) {}
+    constructor(public dialog: MatDialog, private tableBasicService: TableBasicService, private router: Router ) {}
 
     openDialog(element: Element): void {
         const dialogRef = this.dialog.open(TableModalDialogComponent, {
@@ -57,6 +57,7 @@ export class TableComponent implements OnInit {
 
     PrintPdf() : void{
         PdfToPrintTestComponent.getUsersPdf(this.selected);
+        this.router.navigateByUrl('/pdf-to-print')
     }
 
     selectedToPdf(element: Element) {

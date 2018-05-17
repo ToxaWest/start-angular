@@ -22,8 +22,6 @@ export class PdfToPrintTestComponent implements OnInit {
   ngOnInit() {
       this.getTodayDate();
       this.users = PdfToPrintTestComponent.users;
-      console.log(this.todayDate);
-      console.log(PdfToPrintTestComponent.users);
   }
 
   static getUsersPdf(selected: any) {
