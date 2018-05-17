@@ -1,3 +1,5 @@
+import { Element } from './table';
+
 export const ELEMENT_DATA: Element[] = [
     { number: 1000055344, stage: 'О.И', name: 'Пупкин В.С', date: '10/11/2018', address: 'ул. Метростроителей д 42кв 101', month: 0, debt: 200486, human: 2, privileges: false, privatization: true },
     { number: 1000055345, stage: 'О.И', name: 'Сидоров В.С', date: '15/11/2018', address: 'ул. Метростроителей д 42кв 101', month: 0, debt: 200486, human: 2, privileges: false, privatization: true },
