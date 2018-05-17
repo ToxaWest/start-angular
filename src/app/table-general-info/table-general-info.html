@@ -4,6 +4,10 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Поиск">
     </mat-form-field>
   </div>
+  <div class="button-row">
+    <button mat-button color="accent" (click)="PrintPdf()">Generate Selected to PDF</button>
+    <button mat-button color="primary" (click)="PrintAllPdf()">Generate ALL to PDF</button>
+  </div>
   <mat-table #table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="select">
       <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
@@ -55,9 +59,8 @@
   </mat-table>
 
   <mat-paginator #paginator
-                 [pageSize]="10"
-                 [pageSizeOptions]="[5, 10, 20]"
+                 [pageSize]="8"
+                 [pageSizeOptions]="[5, 8, 10, 20, 100, 500, 1000]"
                  [showFirstLastButtons]="true">
   </mat-paginator>
-  <button mat-button color="primary" (click)="PrintPdf()">Generate PDF</button>
 </div>

@@ -46,9 +46,9 @@ export class TableComponent implements OnInit {
 
     getUsers(): void {
         this.tableBasicService.getUsersSlowly()
+            .then(selectedUser => this.selectedUser = selectedUser)
             .then(dataSource => this.dataSource = new MatTableDataSource(dataSource))
-            .then(dataSource => this.AfterViewInit(dataSource))
-            .then(selectedUser => this.selectedUser = selectedUser);
+            .then(dataSource => this.AfterViewInit(dataSource));
     }
 
     ngOnInit() {
@@ -57,6 +57,11 @@ export class TableComponent implements OnInit {
 
     PrintPdf() : void{
         PdfToPrintTestComponent.getUsersPdf(this.selected);
+        this.router.navigateByUrl('/pdf-to-print')
+    }
+
+    PrintAllPdf() : void {
+        PdfToPrintTestComponent.getUsersPdf(this.selectedUser);
         this.router.navigateByUrl('/pdf-to-print')
     }
 
