@@ -7,12 +7,12 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
-<div *ngIf="selected" style="display: flex">
+<div *ngIf="selected" style="display: flex; position: absolute; left: 2vw; width: 96vw">
 <div style="max-width: 50%;width: 100%">
-  <textarea [(ngModel)]="selectedTemplate.data" style="width: 100%" rows="40"></textarea>
+    <app-ngx-editor [placeholder]="selectedTemplate.data" [spellcheck]="true" [(ngModel)]="selectedTemplate.data" ></app-ngx-editor>
   <button mat-button color="primary" (click)="savePdf()">Generate ALL to PDF</button>
 </div>
 <div style="max-width: 48%; padding: 20px; background-color: #fff; margin: 0 1%">
-  <div class="pdf-view" [innerHTML]="selectedTemplate.data"></div>
+  <div class="pdf-view" [innerHTML]="selectedTemplate.data | safeHtml"></div>
 </div>
 </div>

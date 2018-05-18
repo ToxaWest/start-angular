@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialAppModule } from './ngmaterial.module';
@@ -18,7 +19,8 @@ import {TableBasicService} from './services/table-basic.service';
 import {PdfToPrintTestComponent} from './pdf-to-print-test/pdf-to-print-test.component';
 import {PdfToPrintTestService} from './services/pdf-to-print-test.service';
 import {PdfTemplateService} from './services/pdf-template.service';
-import {EditPdfTemplateComponent} from './edit-pdf-template/edit-pdf-template.component';
+import {EditPdfTemplateComponent, SafeHtmlPipe} from './edit-pdf-template/edit-pdf-template.component';
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import {EditPdfTemplateComponent} from './edit-pdf-template/edit-pdf-template.co
     TableDyModalDialog,
     LoginComponent,
     CreatePdfComponent,
+    SafeHtmlPipe,
     PdfToPrintTestComponent,
     EditPdfTemplateComponent,
 ],
@@ -40,6 +43,8 @@ import {EditPdfTemplateComponent} from './edit-pdf-template/edit-pdf-template.co
     FormsModule,
     TableComponent,
     MaterialAppModule,
+    HttpClientModule,
+    NgxEditorModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
         {

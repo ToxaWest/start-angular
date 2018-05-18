@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import { PdfTemplateService } from '../services/pdf-template.service';
 import { TemplatesInterface } from '../services/templates-interface';
 import {Router} from '@angular/router';
@@ -31,8 +31,23 @@ export class EditPdfTemplateComponent implements OnInit {
   }
 
   savePdf (){
+      console.log(this.selectedTemplate);
       PdfToPrintTestComponent.editablePdf(this.selectedTemplate);
+
       this.router.navigateByUrl('/')
   }
+
+}
+
+import { DomSanitizer } from '@angular/platform-browser'
+
+@Pipe({name: 'safeHtml'})
+export class SafeHtmlPipe implements PipeTransform {
+
+    constructor(private sanitizer:DomSanitizer){}
+
+    transform(html) {
+        return this.sanitizer.bypassSecurityTrustHtml(html);
+    }
 
 }

@@ -1,3 +1,4 @@
+@import "css/font-awesome.min.css";
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 h1 {
   color: #369;
@@ -53,22 +54,5 @@ button {
 .pdf-view {
   background-color: #fff;
   color: #000;
-}
-.pdf-view .inline {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.pdf-view h3,
-.pdf-view h2,
-.pdf-view h1,
-.pdf-view h4,
-.pdf-view h5,
-.pdf-view h6 {
-  color: #000;
-}
-.pdf-view p {
-  text-indent: 20px;
-  margin: 5px 0;
 }
 /*# sourceMappingURL=styles.css.map */

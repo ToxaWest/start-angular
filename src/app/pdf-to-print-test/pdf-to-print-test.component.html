@@ -1,2 +1,2 @@
 <button mat-button color="primary" onclick="window.print()">Save As PDF</button>
-<div class="pdf-view" [innerHTML]="data"></div>
+<div class="pdf-view" [innerHTML]="data | safeHtml"></div>
