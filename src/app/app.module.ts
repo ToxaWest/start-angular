@@ -18,6 +18,7 @@ import {TableBasicService} from './services/table-basic.service';
 import {PdfToPrintTestComponent} from './pdf-to-print-test/pdf-to-print-test.component';
 import {PdfToPrintTestService} from './services/pdf-to-print-test.service';
 import {PdfTemplateService} from './services/pdf-template.service';
+import {EditPdfTemplateComponent} from './edit-pdf-template/edit-pdf-template.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {PdfTemplateService} from './services/pdf-template.service';
     LoginComponent,
     CreatePdfComponent,
     PdfToPrintTestComponent,
+    EditPdfTemplateComponent,
 ],
   imports: [
     BrowserModule,
@@ -59,6 +61,10 @@ import {PdfTemplateService} from './services/pdf-template.service';
         {
             path: 'pdf-to-print',
             component: PdfToPrintTestComponent
+        },
+        {
+            path: 'edit-template',
+            component: EditPdfTemplateComponent
         }
     ])
   ],

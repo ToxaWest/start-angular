@@ -13,6 +13,8 @@ export class PdfToPrintTestComponent implements OnInit {
 
   todayDate: any;
   private static users: any;
+  private static _selectedTemplate: any;
+  _selectedTemplate:any;
   users:any;
   data = [];
   template: TemplatesInterface[];
@@ -30,14 +32,18 @@ export class PdfToPrintTestComponent implements OnInit {
   getTemplates(): void{
       this.pdfTemplateService.getTemplatesService()
           .then(templates => this.template = templates)
+          .then(this._selectedTemplate = PdfToPrintTestComponent._selectedTemplate)
           .then(this.users = PdfToPrintTestComponent.users)
           .then(()=> this.makeTemplate(this.users))
   }
 
   makeTemplate (user) {
-      console.log(this.template);
       const template = [];
-      const text_template = _.template(this.template[0].data);
+      console.log(PdfToPrintTestComponent._selectedTemplate);
+      const text_template =
+          (typeof this._selectedTemplate === "undefined") ?
+              _.template(this.template[0].data) :
+              _.template(this._selectedTemplate.data);
       for (let i = 0; i < user.length; i++){
           user[i].todayDate = this.todayDate;
           const Templete = text_template(user[i]);
@@ -55,5 +61,9 @@ export class PdfToPrintTestComponent implements OnInit {
 
   static getUsersPdf(selected: any) {
     this.users = selected;
+  }
+
+  static editablePdf(selected: any) {
+      this._selectedTemplate = selected
   }
 }

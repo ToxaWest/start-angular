@@ -1,0 +1,13 @@
+<mat-form-field>
+  <mat-select [(value)]="selected" >
+    <mat-option *ngFor="let templates of template"
+                (click)="selectPdf(templates)"
+                value="{{templates}}">
+      {{templates.type}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<div *ngIf="selected">
+  <textarea [(ngModel)]="selectedTemplate.data" style="width: 100%" rows="40"></textarea>
+  <button mat-button color="primary" (click)="savePdf()">Generate ALL to PDF</button>
+</div>
