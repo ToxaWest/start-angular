@@ -10,16 +10,16 @@
   </div>
   <mat-table #table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="select">
-      <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
-      <mat-cell *matCellDef="let element" ><input (click)="selectedToPdf(element)" type="checkbox"></mat-cell>
+      <mat-header-cell *matHeaderCellDef style="flex: 0 0 2%">  </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="flex: 0 0 2%"><input (click)="selectedToPdf(element)" type="checkbox"></mat-cell>
     </ng-container>
     <ng-container matColumnDef="number">
       <mat-header-cell *matHeaderCellDef mat-sort-header> № л/с </mat-header-cell>
-      <mat-cell *matCellDef="let element" (click)="openDialog(element)"> {{element.number}} </mat-cell>
+      <mat-cell *matCellDef="let element" (click)="openDialog(element)" style="cursor: pointer"> {{element.number}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="stage">
-      <mat-header-cell *matHeaderCellDef> Этап </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.stage}} </mat-cell>
+    <ng-container matColumnDef="stage" >
+      <mat-header-cell *matHeaderCellDef style="flex: 0 0 6%"> Этап </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="flex: 0 0 6%"> {{element.stage}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef  mat-sort-header> Ф.И.О </mat-header-cell>
@@ -30,28 +30,28 @@
       <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="address">
-      <mat-header-cell *matHeaderCellDef> Адрес </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.address}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef style="flex: 0 0 20%"> Адрес </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="flex: 0 0 20%"> {{element.address}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="month">
-      <mat-header-cell *matHeaderCellDef> Месячные начисления </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.month}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef style="flex: 0 0 6%"> Месячные начисления </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="flex: 0 0 6%"> {{element.month}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="debt">
       <mat-header-cell *matHeaderCellDef  mat-sort-header> Долг </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.debt}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="human">
-      <mat-header-cell *matHeaderCellDef> Чел </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.human}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef style="flex: 0 0 6%"> Чел </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="flex: 0 0 6%"> {{element.human}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="privileges">
-      <mat-header-cell *matHeaderCellDef> Льготы </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.privileges}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef style="flex: 0 0 6%"> Льготы </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="flex: 0 0 6%"> {{element.privileges}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="privatization">
-      <mat-header-cell *matHeaderCellDef> Приватизированная </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.privatization}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef style="flex: 0 0 6%"> Приватизированная </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="flex: 0 0 6%"> {{element.privatization}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

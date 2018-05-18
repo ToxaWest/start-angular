@@ -38,7 +38,12 @@
 
 .mat-table {
   max-height: unset;
+  text-align: center;
 }
+.mat-cell, .mat-header-cell {
+  text-align: center;
+}
+.mat-sort-header-button{margin: auto;}
 .example-form {
   min-width: 150px;
   max-width: 500px;
