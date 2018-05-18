@@ -1,34 +1,65 @@
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
-
 h1 {
-    color: #369;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 250%;
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
 }
-h2, h3 {
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: lighter;
+h2,
+h3 {
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
 }
 body {
-    max-width: 1280px;
-    margin: auto;
+  max-width: 1280px;
+  margin: auto;
 }
-body, input[text], button {
-    color: #888;
-    font-family: Cambria, Georgia;
-    background-color: #171717;
+body,
+input[text],
+button {
+  color: #888;
+  font-family: Cambria, Georgia;
+  background-color: #171717;
 }
 /* everywhere else */
-.mat-grid-tile .mat-figure{
-    justify-content: start !important;
+.mat-grid-tile .mat-figure {
+  justify-content: start !important;
 }
 * {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
 @media print {
-    h1, nav, button.mat-button {
-        display: none;
-    }
+  h1,
+  nav,
+  button.mat-button {
+    display: none;
+  }
+  .new-page {
+    page-break-after: always;
+  }
+  .new-page:last-child {
+    page-break-after: unset;
+  }
 }
+.pdf-view {
+  background-color: #fff;
+  color: #000;
+}
+.pdf-view .inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pdf-view h3,
+.pdf-view h2,
+.pdf-view h1,
+.pdf-view h4,
+.pdf-view h5,
+.pdf-view h6 {
+  color: #000;
+}
+.pdf-view p {
+  text-indent: 20px;
+  margin: 5px 0;
+}
+/*# sourceMappingURL=styles.css.map */

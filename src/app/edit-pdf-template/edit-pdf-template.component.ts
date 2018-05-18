@@ -7,7 +7,6 @@ import {PdfToPrintTestComponent} from '../pdf-to-print-test/pdf-to-print-test.co
 @Component({
   selector: 'app-edit-pdf-template',
   templateUrl: './edit-pdf-template.component.html',
-  styleUrls: ['./edit-pdf-template.component.css'],
   providers: [PdfTemplateService],
 })
 export class EditPdfTemplateComponent implements OnInit {

@@ -6,7 +6,6 @@ import { TemplatesInterface } from '../services/templates-interface';
 @Component({
   selector: 'app-pdf-to-print-test',
   templateUrl: './pdf-to-print-test.component.html',
-  styleUrls: ['./pdf-to-print-test.component.css'],
   providers: [PdfTemplateService],
 })
 export class PdfToPrintTestComponent implements OnInit {
