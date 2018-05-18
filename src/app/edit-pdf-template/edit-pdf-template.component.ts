@@ -14,6 +14,7 @@ export class EditPdfTemplateComponent implements OnInit {
 
   template: TemplatesInterface[];
   selectedTemplate: any;
+  selected:any;
 
   constructor(private pdfTemplateService: PdfTemplateService , private router: Router){}
 
@@ -30,9 +31,8 @@ export class EditPdfTemplateComponent implements OnInit {
     this.selectedTemplate = templates;
   }
 
-  savePdf (templateData){
+  savePdf (){
       PdfToPrintTestComponent.editablePdf(this.selectedTemplate);
-      console.log(this.selectedTemplate);
       this.router.navigateByUrl('/')
   }
 
