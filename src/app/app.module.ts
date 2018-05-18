@@ -17,6 +17,7 @@ import { PdfService } from './services/pdf.service';
 import {TableBasicService} from './services/table-basic.service';
 import {PdfToPrintTestComponent} from './pdf-to-print-test/pdf-to-print-test.component';
 import {PdfToPrintTestService} from './services/pdf-to-print-test.service';
+import {PdfTemplateService} from './services/pdf-template.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,7 @@ import {PdfToPrintTestService} from './services/pdf-to-print-test.service';
         }
     ])
   ],
-  providers: [HeroService , PdfService , TableBasicService, PdfToPrintTestService],
+  providers: [HeroService , PdfService , TableBasicService, PdfToPrintTestService ,PdfTemplateService],
   entryComponents: [TableModalDialogComponent, TableDyModalDialog],
   bootstrap: [AppComponent]
 })
