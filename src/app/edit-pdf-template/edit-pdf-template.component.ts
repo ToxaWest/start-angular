@@ -31,7 +31,6 @@ export class EditPdfTemplateComponent implements OnInit {
   }
 
   savePdf (){
-      console.log(this.selectedTemplate);
       PdfToPrintTestComponent.editablePdf(this.selectedTemplate);
 
       this.router.navigateByUrl('/')
