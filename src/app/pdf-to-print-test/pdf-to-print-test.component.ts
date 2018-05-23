@@ -38,17 +38,23 @@ export class PdfToPrintTestComponent implements OnInit {
 
   makeTemplate (user) {
       const template = [];
-      const newTemplate = this._selectedTemplate.data.replace(/&lt;/gm , '<' ).replace(/&gt;/gm , '>');
-      const text_template =
-          (typeof this._selectedTemplate === "undefined") ?
-              _.template(this.template[0].data) :
-              _.template(newTemplate);
-      for (let i = 0; i < user.length; i++){
-          user[i].todayDate = this.todayDate;
-          const Templete = text_template(user[i]);
-          template.push(
-              Templete
-          )
+      let newTemplate:any;
+      let text_template:any;
+      if(typeof this._selectedTemplate === "undefined"){
+          newTemplate = this.template[0].data.replace(/&lt;/gm , '<' ).replace(/&gt;/gm , '>');
+          text_template = _.template(newTemplate);
+      } else {
+          newTemplate = this._selectedTemplate.data.replace(/&lt;/gm , '<' ).replace(/&gt;/gm , '>');
+          text_template = _.template(newTemplate);
+      }
+      if(typeof user !== "undefined") {
+          for (let i = 0; i < user.length; i++) {
+              user[i].todayDate = this.todayDate;
+              const Templete = text_template(user[i]);
+              template.push(
+                  Templete
+              )
+          }
       }
       this.data = template;
   }
