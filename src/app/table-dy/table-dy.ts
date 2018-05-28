@@ -1,6 +1,12 @@
 export interface Element {
-    date: string;
-    name: string;
-    address: string;
-    debt: number;
+    results:any;
+    structure:any;
+}
+export interface ElementTemplate {
+    name:string;
+    template:string;
+}
+export interface ElementActions {
+    name:string;
+    action:string
 }

@@ -55,4 +55,8 @@ button {
   background-color: #fff;
   color: #000;
 }
+.mat-checkbox-ripple {
+  height: 0 !important;
+  width: 0 !important;
+}
 /*# sourceMappingURL=styles.css.map */

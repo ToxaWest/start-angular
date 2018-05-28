@@ -10,11 +10,11 @@ import { TemplatesInterface } from '../services/templates-interface';
 })
 export class PdfToPrintTestComponent implements OnInit {
 
-  todayDate: any;
   private static users: any;
   private static _selectedTemplate: any;
   _selectedTemplate:any;
-  users:any;
+  _users:any;
+  todayDate: any;
   data = [];
   template: TemplatesInterface[];
 
@@ -32,21 +32,22 @@ export class PdfToPrintTestComponent implements OnInit {
       this.pdfTemplateService.getTemplatesService()
           .then(templates => this.template = templates)
           .then(this._selectedTemplate = PdfToPrintTestComponent._selectedTemplate)
-          .then(this.users = PdfToPrintTestComponent.users)
-          .then(()=> this.makeTemplate(this.users))
+          .then(this._users = PdfToPrintTestComponent.users)
+          .then(()=> this.makeTemplate(this._users))
   }
 
   makeTemplate (user) {
       const template = [];
       let newTemplate:any;
-      let text_template:any;
       if(typeof this._selectedTemplate === "undefined"){
           newTemplate = this.template[0].data.replace(/&lt;/gm , '<' ).replace(/&gt;/gm , '>');
-          text_template = _.template(newTemplate);
-      } else {
-          newTemplate = this._selectedTemplate.data.replace(/&lt;/gm , '<' ).replace(/&gt;/gm , '>');
-          text_template = _.template(newTemplate);
+      } else if(this._selectedTemplate.template === "notification") {
+          newTemplate = this.template[2].data.replace(/&lt;/gm , '<' ).replace(/&gt;/gm , '>');
       }
+      else {
+          newTemplate = this._selectedTemplate.data.replace(/&lt;/gm , '<' ).replace(/&gt;/gm , '>');
+      }
+      let text_template = _.template(newTemplate);
       if(typeof user !== "undefined") {
           for (let i = 0; i < user.length; i++) {
               user[i].todayDate = this.todayDate;
@@ -68,7 +69,7 @@ export class PdfToPrintTestComponent implements OnInit {
     this.users = selected;
   }
 
-  static editablePdf(selected: any) {
+  static getSelectedPdf(selected:any){
       this._selectedTemplate = selected
   }
 }

@@ -4,28 +4,30 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialAppModule } from './ngmaterial.module';
-import { AppComponent } from './app.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { TableComponent, TableModalDialogComponent} from './table-general-info/table-general-info';
-import { TabsComponent } from './tabs/tabs.component';
 import { ExpandComponent } from './expand/expand.component';
+import { RouterModule } from '@angular/router';
+import { NgxEditorModule } from 'ngx-editor';
+// Components //
+import { AppComponent } from './app.component';
+import { TabsComponent } from './tabs/tabs.component';
+import { TableComponent, TableModalDialogComponent} from './table-general-info/table-general-info';
 import { TableDyComponent, TableDyModalDialog } from './table-dy/table-dy.component';
 import { LoginComponent } from './login/login.component';
-import { RouterModule } from '@angular/router';
-import { HeroService} from './heroes/hero.service';
 import { CreatePdfComponent} from './create-pdf/create-pdf.component';
+import {EditPdfTemplateComponent, SafeHtmlPipe} from './edit-pdf-template/edit-pdf-template.component';
+import {PdfToPrintTestComponent} from './pdf-to-print-test/pdf-to-print-test.component';
+import {TableStateOfClaimComponent} from  './table-state-of-claim/table-state-of-claim.component'
+// Services //
 import { PdfService } from './services/pdf.service';
 import {TableBasicService} from './services/table-basic.service';
-import {PdfToPrintTestComponent} from './pdf-to-print-test/pdf-to-print-test.component';
 import {PdfToPrintTestService} from './services/pdf-to-print-test.service';
 import {PdfTemplateService} from './services/pdf-template.service';
-import {EditPdfTemplateComponent, SafeHtmlPipe} from './edit-pdf-template/edit-pdf-template.component';
-import { NgxEditorModule } from 'ngx-editor';
+import {TableDyService} from './table-dy/table-dy.service';
+import {TableStateOfClaimService} from './table-state-of-claim/table-state-of-claim.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesComponent,
     TableComponent,
     TabsComponent,
     TableModalDialogComponent,
@@ -37,6 +39,7 @@ import { NgxEditorModule } from 'ngx-editor';
     SafeHtmlPipe,
     PdfToPrintTestComponent,
     EditPdfTemplateComponent,
+      TableStateOfClaimComponent,
 ],
   imports: [
     BrowserModule,
@@ -47,10 +50,6 @@ import { NgxEditorModule } from 'ngx-editor';
     NgxEditorModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
-        {
-            path: 'heroes',
-            component: HeroesComponent
-        },
         {
             path: '',
             component: TabsComponent
@@ -73,7 +72,14 @@ import { NgxEditorModule } from 'ngx-editor';
         }
     ])
   ],
-  providers: [HeroService , PdfService , TableBasicService, PdfToPrintTestService ,PdfTemplateService],
+  providers: [
+      PdfService ,
+      TableBasicService,
+      PdfToPrintTestService ,
+      PdfTemplateService,
+      TableStateOfClaimService,
+      TableDyService
+  ],
   entryComponents: [TableModalDialogComponent, TableDyModalDialog],
   bootstrap: [AppComponent]
 })
