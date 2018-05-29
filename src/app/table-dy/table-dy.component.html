@@ -6,8 +6,8 @@
   </div>
   <div style="display: flex; justify-content: space-between">
     <div>
-    <mat-select placeholder="Select Action" style="margin: 10px; max-width: 300px;">
-      <mat-option *ngFor="let action of actions" [value]="action.name" (click)="log()">
+    <mat-select placeholder="Select Action" style="margin: 10px; max-width: 300px;" [(value)]="selectedAction">
+      <mat-option *ngFor="let action of actions" [value]="action" (click)="UserAction()">
         {{ action.name }}
       </mat-option>
     </mat-select>

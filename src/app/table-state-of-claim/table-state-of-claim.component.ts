@@ -54,7 +54,9 @@ export class TableStateOfClaimComponent implements OnInit {
 
   getDisplayColumns(columns) {
         for(let i = 0; i < columns.length; i++){
+          if(columns[i].visible) {
             this.displayedColumns.push(columns[i].name)
+          }
         }
     }
 

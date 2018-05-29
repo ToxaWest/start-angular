@@ -26,6 +26,7 @@ export class TableDyComponent implements OnInit {
     Users:any;
     data:any;
     structure:any;
+    selectedAction:any;
     pdfTemplates;
     actions;
     checkbox:boolean;
@@ -62,7 +63,9 @@ export class TableDyComponent implements OnInit {
 
     getDisplayColumns(columns) {
         for(let i = 0; i < columns.length; i++){
+          if(columns[i].visible) {
             this.displayedColumns.push(columns[i].name)
+          }
         }
     }
 
@@ -87,10 +90,8 @@ export class TableDyComponent implements OnInit {
             this.selected.push(element);
     }
 
-    log(){
-        console.log(this.Users);
-        console.log(this.selected);
-        console.log('_______________________________________');
+    UserAction(): void{
+        console.log(this.selectedAction.action);
     }
 
     ngOnInit() {
