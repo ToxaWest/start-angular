@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Results} from './table-state-of-claim';
 import {TableStateOfClaimService} from './table-state-of-claim.service';
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
@@ -11,11 +10,11 @@ import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/mat
 })
 export class TableStateOfClaimComponent implements OnInit {
 
-  data:any;
+  data: any;
   displayedColumns = ['select'];
   dataSource;
   selected = [];
-  checkbox:boolean;
+  checkbox: boolean;
   structure;
   Users;
 
@@ -30,7 +29,7 @@ export class TableStateOfClaimComponent implements OnInit {
 
   constructor(
       public dialog: MatDialog,
-      private tableStateOfClaimService:TableStateOfClaimService,
+      private tableStateOfClaimService: TableStateOfClaimService,
   ) { }
 
   getTableStateOfClaim(): void {
@@ -45,23 +44,23 @@ export class TableStateOfClaimComponent implements OnInit {
 
   selectAll(checked) {
       this.checkbox = checked;
-      if(checked){
-          this.selected = this.data.result
-      } else{
-          this.selected = []
+      if (checked) {
+          this.selected = this.data.result;
+      } else {
+          this.selected = [];
       }
   }
 
   getDisplayColumns(columns) {
-        for(let i = 0; i < columns.length; i++){
-          if(columns[i].visible) {
-            this.displayedColumns.push(columns[i].name)
+        for (let i = 0; i < columns.length; i++) {
+          if (columns[i].visible) {
+            this.displayedColumns.push(columns[i].name);
           }
         }
     }
 
   ngOnInit() {
-    this.getTableStateOfClaim()
+    this.getTableStateOfClaim();
   }
 
   AfterViewInit(data) {

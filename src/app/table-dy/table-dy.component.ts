@@ -23,13 +23,13 @@ export class TableDyComponent implements OnInit {
     displayedColumns = ['select'];
     dataSource;
     selected = [];
-    Users:any;
-    data:any;
-    structure:any;
-    selectedAction:any;
+    Users: any;
+    data: any;
+    structure: any;
+    selectedAction: any;
     pdfTemplates;
     actions;
-    checkbox:boolean;
+    checkbox: boolean;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -42,7 +42,7 @@ export class TableDyComponent implements OnInit {
 
     constructor(
         public dialog: MatDialog,
-        private tableDyService:TableDyService,
+        private tableDyService: TableDyService,
         private router: Router
     ) {}
 
@@ -58,39 +58,39 @@ export class TableDyComponent implements OnInit {
 
     getTableDyTemplate(): void {
         this.tableDyService.getTableDyTemplate().toPromise()
-            .then(pdfTemplates => this.pdfTemplates = pdfTemplates)
+            .then(pdfTemplates => this.pdfTemplates = pdfTemplates);
     }
 
     getDisplayColumns(columns) {
-        for(let i = 0; i < columns.length; i++){
-          if(columns[i].visible) {
-            this.displayedColumns.push(columns[i].name)
+        for (let i = 0; i < columns.length; i++) {
+          if (columns[i].visible) {
+            this.displayedColumns.push(columns[i].name);
           }
         }
     }
 
     getTableDyActions(): void {
         this.tableDyService.getTableDyActions().toPromise()
-            .then(actions => this.actions = actions)
+            .then(actions => this.actions = actions);
     }
 
     selectAll(checked) {
         this.checkbox = checked;
-        if(checked){
-            this.selected = this.Users
-        } else{
-            this.selected = []
+        if (checked) {
+            this.selected = this.Users;
+        } else {
+            this.selected = [];
         }
     }
 
     selectedToPdf(element: Element) {
         const ElementSelect = this.selected.indexOf(element);
-        ElementSelect != -1 ?
-            this.selected.splice(ElementSelect , 1):
+        ElementSelect !== -1 ?
+            this.selected.splice(ElementSelect , 1) :
             this.selected.push(element);
     }
 
-    UserAction(): void{
+    UserAction(): void {
         console.log(this.selectedAction.action);
     }
 
@@ -101,7 +101,7 @@ export class TableDyComponent implements OnInit {
     }
 
     openDialog(element: Element): void {
-        let dialogRef = this.dialog.open(TableDyModalDialog, {
+        const dialogRef = this.dialog.open(TableDyModalDialogComponent, {
             width: '600px',
             data: element
         });
@@ -110,10 +110,10 @@ export class TableDyComponent implements OnInit {
         });
     }
 
-    PrintPdf() : void{
+    PrintPdf(): void {
         PdfToPrintTestComponent.getSelectedPdf(this.pdfTemplates[0]);
         PdfToPrintTestComponent.getUsersPdf(this.selected);
-        this.router.navigateByUrl('/pdf-to-print')
+        this.router.navigateByUrl('/pdf-to-print');
     }
 
     AfterViewInit(data) {
@@ -125,10 +125,10 @@ export class TableDyComponent implements OnInit {
     selector: 'app-table-dy-content-modal',
     templateUrl: './table-dy-popup.html'
 })
-export class TableDyModalDialog {
+export class TableDyModalDialogComponent {
 
     constructor(
-        public dialogRef: MatDialogRef<TableDyModalDialog>,
+        public dialogRef: MatDialogRef<TableDyModalDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     onNoClick(): void {

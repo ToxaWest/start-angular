@@ -10,12 +10,12 @@ export interface Person {
 })
 export class LoginComponent implements OnInit {
 
+  private logined = false;
+
   ngOnInit() {
   }
 
-  logined:boolean = false;
-
-  onSubmit(person: Person){
-    this.logined = person.login === 'wise' && person.pass === 'wise' ? true : false;
+  onSubmit(person: Person) {
+    this.logined = person.login === 'wise' && person.pass === 'wise';
   }
 }

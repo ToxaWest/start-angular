@@ -11,14 +11,12 @@ import { NgxEditorModule } from 'ngx-editor';
 import { AppComponent } from './app.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TableComponent, TableModalDialogComponent} from './table-general-info/table-general-info';
-import { TableDyComponent, TableDyModalDialog } from './table-dy/table-dy.component';
+import { TableDyComponent, TableDyModalDialogComponent } from './table-dy/table-dy.component';
 import { LoginComponent } from './login/login.component';
-import { CreatePdfComponent} from './create-pdf/create-pdf.component';
 import {EditPdfTemplateComponent, SafeHtmlPipe} from './edit-pdf-template/edit-pdf-template.component';
 import {PdfToPrintTestComponent} from './pdf-to-print-test/pdf-to-print-test.component';
-import {TableStateOfClaimComponent} from  './table-state-of-claim/table-state-of-claim.component'
+import {TableStateOfClaimComponent} from './table-state-of-claim/table-state-of-claim.component';
 // Services //
-import { PdfService } from './services/pdf.service';
 import {TableBasicService} from './services/table-basic.service';
 import {PdfToPrintTestService} from './services/pdf-to-print-test.service';
 import {PdfTemplateService} from './services/pdf-template.service';
@@ -33,9 +31,8 @@ import {TableStateOfClaimService} from './table-state-of-claim/table-state-of-cl
     TableModalDialogComponent,
     ExpandComponent,
     TableDyComponent,
-    TableDyModalDialog,
+    TableDyModalDialogComponent,
     LoginComponent,
-    CreatePdfComponent,
     SafeHtmlPipe,
     PdfToPrintTestComponent,
     EditPdfTemplateComponent,
@@ -59,10 +56,6 @@ import {TableStateOfClaimService} from './table-state-of-claim/table-state-of-cl
             component: LoginComponent
         },
         {
-            path: 'create-pdf',
-            component: CreatePdfComponent
-        },
-        {
             path: 'pdf-to-print',
             component: PdfToPrintTestComponent
         },
@@ -73,14 +66,13 @@ import {TableStateOfClaimService} from './table-state-of-claim/table-state-of-cl
     ])
   ],
   providers: [
-      PdfService ,
       TableBasicService,
       PdfToPrintTestService ,
       PdfTemplateService,
       TableStateOfClaimService,
       TableDyService
   ],
-  entryComponents: [TableModalDialogComponent, TableDyModalDialog],
+  entryComponents: [TableModalDialogComponent, TableDyModalDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

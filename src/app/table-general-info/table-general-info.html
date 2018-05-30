@@ -11,7 +11,7 @@
   <mat-table #table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="select">
       <mat-header-cell *matHeaderCellDef style="flex: 0 0 2%">  </mat-header-cell>
-      <mat-cell *matCellDef="let element" style="flex: 0 0 2%"><input (click)="selectedToPdf(element)" type="checkbox"></mat-cell>
+      <mat-cell *matCellDef="let element" style="flex: 0 0 2%"><label><input (click)="selectedToPdf(element)" type="checkbox"></label></mat-cell>
     </ng-container>
     <ng-container matColumnDef="number">
       <mat-header-cell *matHeaderCellDef mat-sort-header> № л/с </mat-header-cell>

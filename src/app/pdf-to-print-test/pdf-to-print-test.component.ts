@@ -12,13 +12,19 @@ export class PdfToPrintTestComponent implements OnInit {
 
   private static users: any;
   private static _selectedTemplate: any;
-  _selectedTemplate:any;
-  _users:any;
+  _selectedTemplate: any;
+  _users: any;
   todayDate: any;
   data = [];
   template: TemplatesInterface[];
+  static getUsersPdf(selected: any) {
+      this.users = selected;
+  }
+  static getSelectedPdf(selected: any) {
+      this._selectedTemplate = selected;
+  }
 
-  constructor(private pdfTemplateService: PdfTemplateService){}
+  constructor(private pdfTemplateService: PdfTemplateService) {}
 
   getTodayDate() {
       const today = new Date();
@@ -28,33 +34,32 @@ export class PdfToPrintTestComponent implements OnInit {
       this.todayDate = (dd < 10 ? '0' + dd : dd) + '.' + (mm < 10 ? '0' + mm : mm) + '.' + yyyy;
   }
 
-  getTemplates(): void{
+  getTemplates(): void {
       this.pdfTemplateService.getTemplatesService()
           .then(templates => this.template = templates)
           .then(this._selectedTemplate = PdfToPrintTestComponent._selectedTemplate)
           .then(this._users = PdfToPrintTestComponent.users)
-          .then(()=> this.makeTemplate(this._users))
+          .then(() => this.makeTemplate(this._users));
   }
 
   makeTemplate (user) {
       const template = [];
-      let newTemplate:any;
-      if(typeof this._selectedTemplate === "undefined"){
+      let newTemplate: any;
+      if (typeof this._selectedTemplate === 'undefined') {
           newTemplate = this.template[0].data.replace(/&lt;/gm , '<' ).replace(/&gt;/gm , '>');
-      } else if(this._selectedTemplate.template === "notification") {
+      } else if (this._selectedTemplate.template === 'notification') {
           newTemplate = this.template[2].data.replace(/&lt;/gm , '<' ).replace(/&gt;/gm , '>');
-      }
-      else {
+      } else {
           newTemplate = this._selectedTemplate.data.replace(/&lt;/gm , '<' ).replace(/&gt;/gm , '>');
       }
-      let text_template = _.template(newTemplate);
-      if(typeof user !== "undefined") {
+      const text_template = _.template(newTemplate);
+      if (typeof user !== 'undefined') {
           for (let i = 0; i < user.length; i++) {
               user[i].todayDate = this.todayDate;
               const Templete = text_template(user[i]);
               template.push(
                   Templete
-              )
+              );
           }
       }
       this.data = template;
@@ -65,11 +70,4 @@ export class PdfToPrintTestComponent implements OnInit {
       this.getTodayDate();
   }
 
-  static getUsersPdf(selected: any) {
-    this.users = selected;
-  }
-
-  static getSelectedPdf(selected:any){
-      this._selectedTemplate = selected
-  }
 }

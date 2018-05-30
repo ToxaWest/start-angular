@@ -5,13 +5,13 @@ import { TEMPLATES } from './pdf-templates';
 @Injectable()
 export class PdfTemplateService {
 
-  getTemplates(): Promise<TemplatesInterface[]>{
+  static getTemplates(): Promise<TemplatesInterface[]> {
     return Promise.resolve(TEMPLATES);
   }
 
-  getTemplatesService(): Promise<TemplatesInterface[]>{
+  getTemplatesService(): Promise<TemplatesInterface[]> {
       return new Promise(resolve => {
-          setTimeout(() => resolve(this.getTemplates()), 1000);
+          setTimeout(() => resolve(PdfTemplateService.getTemplates()), 1000);
       });
   }
 

@@ -14,12 +14,12 @@ export class TableStateOfClaimService {
 
   constructor(private http: HttpClient) { }
 
-  getTableStateOfClaim():Observable<Results[]>{
+  getTableStateOfClaim(): Observable<Results[]> {
     return this.http.get<Results[]>(this.Url)
         .pipe(
             tap(TableStateOfClaim => TableStateOfClaim),
             catchError(this.handleError('getTableStateOfClaim', []))
-        )
+        );
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

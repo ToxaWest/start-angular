@@ -5,13 +5,13 @@ import {ELEMENT_DATA} from './mock-table';
 @Injectable()
 export class TableBasicService {
 
-    getUsers(): Promise<Element[]> {
+    static getUsers(): Promise<Element[]> {
         return Promise.resolve(ELEMENT_DATA);
     }
 
     getUsersSlowly(): Promise<Element[]> {
         return new Promise(resolve => {
-            setTimeout(() => resolve(this.getUsers()), 1000);
+            setTimeout(() => resolve(TableBasicService.getUsers()), 1000);
         });
     }
 

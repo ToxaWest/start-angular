@@ -55,14 +55,14 @@ export class TableComponent implements OnInit {
         this.getUsers();
     }
 
-    PrintPdf() : void{
+    PrintPdf(): void {
         PdfToPrintTestComponent.getUsersPdf(this.selected);
-        this.router.navigateByUrl('/pdf-to-print')
+        this.router.navigateByUrl('/pdf-to-print');
     }
 
-    PrintAllPdf() : void {
+    PrintAllPdf(): void {
         PdfToPrintTestComponent.getUsersPdf(this.selectedUser);
-        this.router.navigateByUrl('/pdf-to-print')
+        this.router.navigateByUrl('/pdf-to-print');
     }
 
     selectedToPdf(element: Element) {
