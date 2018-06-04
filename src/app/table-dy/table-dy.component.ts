@@ -6,6 +6,7 @@ import {TableDyService} from './table-dy.service';
 import 'rxjs/add/operator/toPromise';
 import {PdfToPrintTestComponent} from '../pdf-to-print-test/pdf-to-print-test.component';
 import {Router} from '@angular/router';
+import {catchError, tap} from 'rxjs/operators';
 
 @NgModule({
     exports: [
@@ -47,18 +48,23 @@ export class TableDyComponent implements OnInit {
     ) {}
 
     getTableDy(): void {
-        this.tableDyService.getTableDy().toPromise()
-            .then(data => this.data = data)
-            .then(() => this.dataSource = new MatTableDataSource(this.data.results))
-            .then(() => this.AfterViewInit(this.data.results))
-            .then(() => this.structure = this.data.structure)
-            .then(() => this.Users = this.dataSource.data )
-            .then(() => this.getDisplayColumns(this.structure));
+        this.tableDyService.getTableDy()
+            .subscribe(
+                (data) => {
+                    this.data = data;
+                    this.structure = this.data.structure;
+                    this.getDisplayColumns(this.data.structure);
+                    this.dataSource = new MatTableDataSource(this.data.results);
+                    this.Users = this.data.results;
+                    this.AfterViewInit();
+
+                }
+            );
     }
 
     getTableDyTemplate(): void {
-        this.tableDyService.getTableDyTemplate().toPromise()
-            .then(pdfTemplates => this.pdfTemplates = pdfTemplates);
+        this.tableDyService.getTableDyTemplate()
+            .subscribe(pdfTemplates => this.pdfTemplates = pdfTemplates);
     }
 
     getDisplayColumns(columns) {
@@ -70,8 +76,8 @@ export class TableDyComponent implements OnInit {
     }
 
     getTableDyActions(): void {
-        this.tableDyService.getTableDyActions().toPromise()
-            .then(actions => this.actions = actions);
+        this.tableDyService.getTableDyActions()
+            .subscribe(actions => this.actions = actions);
     }
 
     selectAll(checked) {
@@ -91,7 +97,13 @@ export class TableDyComponent implements OnInit {
     }
 
     UserAction(): void {
-        console.log(this.selectedAction.action);
+        console.log(this.data);
+        const putUsers = {'did': []};
+        for (let i = 0; i < this.selected.length; i++) {
+            putUsers.did.push(this.selected[i].did);
+        }
+        this.tableDyService.updateTableDy(putUsers)
+            .subscribe(() => console.log(this.data));
     }
 
     ngOnInit() {
@@ -116,9 +128,9 @@ export class TableDyComponent implements OnInit {
         this.router.navigateByUrl('/pdf-to-print');
     }
 
-    AfterViewInit(data) {
-        data.paginator = this.paginator;
-        data.sort = this.sort;
+    AfterViewInit() {
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
     }
 }
 @Component({

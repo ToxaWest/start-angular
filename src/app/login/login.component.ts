@@ -10,7 +10,7 @@ export interface Person {
 })
 export class LoginComponent implements OnInit {
 
-  private logined = false;
+  logined = false;
 
   ngOnInit() {
   }

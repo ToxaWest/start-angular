@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Element , ElementTemplate , ElementActions} from './table-dy';
+import {Element, ElementTemplate, ElementActions, UpdateElement, ElementResult} from './table-dy';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {catchError, tap} from 'rxjs/operators';
@@ -40,6 +40,13 @@ export class TableDyService {
             );
     }
 
+    updateTableDy(users: UpdateElement): Observable<any[]> {
+        return this.http.put(this.tableDyUrl + '/claims_registry', users , httpOptions)
+            .pipe(
+                tap(_ => console.log(users)),
+                catchError(this.handleError<any>('updateTableDy'))
+            );
+    }
 
     private handleError<T> (operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
