@@ -36,7 +36,7 @@ export class TableStateOfClaimComponent implements OnInit {
     this.tableStateOfClaimService.getTableStateOfClaim().toPromise()
         .then(data => this.data = data)
         .then(() => this.dataSource = new MatTableDataSource(this.data.results))
-        .then(() => this.AfterViewInit(this.data.results))
+        .then(() => this.AfterViewInit())
         .then(() => this.structure = this.data.structure)
         .then(() => this.Users = this.dataSource.data )
         .then(() => this.getDisplayColumns(this.structure));
@@ -63,9 +63,9 @@ export class TableStateOfClaimComponent implements OnInit {
     this.getTableStateOfClaim();
   }
 
-  AfterViewInit(data) {
-      data.paginator = this.paginator;
-      data.sort = this.sort;
+  AfterViewInit() {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
   }
 
 }
