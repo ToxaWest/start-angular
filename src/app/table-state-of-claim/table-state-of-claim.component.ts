@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {TableStateOfClaimService} from './table-state-of-claim.service';
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
+import {ElementResult} from '../table-dy/table-dy';
 
 @Component({
   selector: 'app-table-state-of-claim',
@@ -13,8 +15,7 @@ export class TableStateOfClaimComponent implements OnInit {
   data: any;
   displayedColumns = ['select'];
   dataSource;
-  selected = [];
-  checkbox: boolean;
+  selection;
   structure;
   Users;
 
@@ -33,22 +34,27 @@ export class TableStateOfClaimComponent implements OnInit {
   ) { }
 
   getTableStateOfClaim(): void {
-    this.tableStateOfClaimService.getTableStateOfClaim().toPromise()
-        .then(data => this.data = data)
-        .then(() => this.dataSource = new MatTableDataSource(this.data.results))
-        .then(() => this.AfterViewInit())
-        .then(() => this.structure = this.data.structure)
-        .then(() => this.Users = this.dataSource.data )
-        .then(() => this.getDisplayColumns(this.structure));
+    this.tableStateOfClaimService.getTableStateOfClaim()
+        .subscribe((data) => {
+            this.data = data;
+            this.dataSource = new MatTableDataSource(this.data.results);
+            this.AfterViewInit();
+            this.structure = this.data.structure;
+            this.Users = this.dataSource.data;
+            this.getDisplayColumns(this.structure);
+        });
   }
 
-  selectAll(checked) {
-      this.checkbox = checked;
-      if (checked) {
-          this.selected = this.data.result;
-      } else {
-          this.selected = [];
-      }
+  isAllSelected() {
+        const numSelected = this.selection.selected.length;
+        const numRows = this.dataSource.data.length;
+        return numSelected === numRows;
+  }
+
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
   getDisplayColumns(columns) {
@@ -61,6 +67,7 @@ export class TableStateOfClaimComponent implements OnInit {
 
   ngOnInit() {
     this.getTableStateOfClaim();
+    this.selection = new SelectionModel<ElementResult>(true, []);
   }
 
   AfterViewInit() {
