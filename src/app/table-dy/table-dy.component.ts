@@ -1,12 +1,11 @@
 import {Component, NgModule, ViewChild, Inject, OnInit} from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource, MatDialog,  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
-import {Element} from './table-dy';
+import {Element, ElementResult} from './table-dy';
 import {TableDyService} from './table-dy.service';
-import 'rxjs/add/operator/toPromise';
 import {PdfToPrintTestComponent} from '../pdf-to-print-test/pdf-to-print-test.component';
 import {Router} from '@angular/router';
-import {catchError, tap} from 'rxjs/operators';
+import {SelectionModel} from '@angular/cdk/collections';
 
 @NgModule({
     exports: [
@@ -23,14 +22,13 @@ export class TableDyComponent implements OnInit {
 
     displayedColumns = ['select'];
     dataSource;
-    selected = [];
     Users: any;
     data: any;
     structure: any;
     selectedAction: any;
     pdfTemplates;
     actions;
-    checkbox: boolean;
+    selection;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -57,9 +55,20 @@ export class TableDyComponent implements OnInit {
                     this.dataSource = new MatTableDataSource(this.data.results);
                     this.Users = this.data.results;
                     this.AfterViewInit();
-
                 }
             );
+    }
+
+    isAllSelected() {
+        const numSelected = this.selection.selected.length;
+        const numRows = this.dataSource.data.length;
+        return numSelected === numRows;
+    }
+
+    masterToggle() {
+        this.isAllSelected() ?
+            this.selection.clear() :
+            this.dataSource.data.forEach(row => this.selection.select(row));
     }
 
     getTableDyTemplate(): void {
@@ -80,26 +89,10 @@ export class TableDyComponent implements OnInit {
             .subscribe(actions => this.actions = actions);
     }
 
-    selectAll(checked) {
-        this.checkbox = checked;
-        if (checked) {
-            this.selected = this.Users;
-        } else {
-            this.selected = [];
-        }
-    }
-
-    selectedToPdf(element: Element) {
-        const ElementSelect = this.selected.indexOf(element);
-        ElementSelect !== -1 ?
-            this.selected.splice(ElementSelect , 1) :
-            this.selected.push(element);
-    }
-
     UserAction(): void {
         const putUsers = {'did': []};
-        for (let i = 0; i < this.selected.length; i++) {
-            putUsers.did.push(this.selected[i].did);
+        for (let i = 0; i < this.selection.selected.length; i++) {
+            putUsers.did.push(this.selection.selected[i].did);
         }
         this.tableDyService.updateTableDy(putUsers)
             .subscribe(() => this.router.navigateByUrl('/state-of-claim'));
@@ -109,6 +102,7 @@ export class TableDyComponent implements OnInit {
         this.getTableDy();
         this.getTableDyTemplate();
         this.getTableDyActions();
+        this.selection = new SelectionModel<ElementResult>(true, []);
     }
 
     openDialog(element: Element): void {
@@ -123,7 +117,7 @@ export class TableDyComponent implements OnInit {
 
     PrintPdf(): void {
         PdfToPrintTestComponent.getSelectedPdf(this.pdfTemplates[0]);
-        PdfToPrintTestComponent.getUsersPdf(this.selected);
+        PdfToPrintTestComponent.getUsersPdf(this.selection.selected);
         this.router.navigateByUrl('/pdf-to-print');
     }
 
