@@ -45,7 +45,7 @@ export class TableComponent implements OnInit {
     }
 
     getUsers(): void {
-        this.tableBasicService.getUsersSlowly()
+        this.tableBasicService.getUsers()
             .then(selectedUser => this.selectedUser = selectedUser)
             .then(dataSource => this.dataSource = new MatTableDataSource(dataSource))
             .then(dataSource => this.AfterViewInit(dataSource));

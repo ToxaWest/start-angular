@@ -43,7 +43,7 @@ export class TableDyService {
     updateTableDy(users: UpdateElement): Observable<any[]> {
         return this.http.put(this.tableDyUrl + '/claims_registry', users , httpOptions)
             .pipe(
-                tap(_ => console.log(users)),
+                tap(updateTableDy => updateTableDy),
                 catchError(this.handleError<any>('updateTableDy'))
             );
     }

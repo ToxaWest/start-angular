@@ -97,13 +97,12 @@ export class TableDyComponent implements OnInit {
     }
 
     UserAction(): void {
-        console.log(this.data);
         const putUsers = {'did': []};
         for (let i = 0; i < this.selected.length; i++) {
             putUsers.did.push(this.selected[i].did);
         }
         this.tableDyService.updateTableDy(putUsers)
-            .subscribe(() => console.log(this.data));
+            .subscribe(() => this.router.navigateByUrl('/state-of-claim'));
     }
 
     ngOnInit() {

@@ -1,6 +1,12 @@
 <h1 routerLink="/">{{title}}</h1>
 <nav>
-    <mat-button-toggle value="italic" routerLink="/">Home</mat-button-toggle>
-    <mat-button-toggle value="italic" routerLink="/edit-template">Edit Pdf Template</mat-button-toggle>
+    <button mat-raised-button routerLink="/" routerLinkActive="active-link">Home</button>
+    <button mat-raised-button routerLink="/edit-template" routerLinkActive="active-link">Edit Pdf Template</button>
+</nav>
+<br>
+<nav>
+    <button mat-raised-button routerLink="" routerLinkActive="active-link">Общая информация</button>
+    <button mat-raised-button routerLink="/dy" routerLinkActive="active-link">Ду</button>
+    <button mat-raised-button routerLink="/state-of-claim" routerLinkActive="active-link">Исковые заявления</button>
 </nav>
 <router-outlet></router-outlet>

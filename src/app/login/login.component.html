@@ -1,6 +1,3 @@
-<div *ngIf="logined">
-  <app-tabs></app-tabs>
-</div>
 <div *ngIf="logined === false">
   <h2 >Вход</h2>
   <form class="example-form" #personForm="ngForm" (ngSubmit)="onSubmit(personForm.value)">

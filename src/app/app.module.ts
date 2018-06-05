@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
 import { NgxEditorModule } from 'ngx-editor';
 // Components //
 import { AppComponent } from './app.component';
-import { TabsComponent } from './tabs/tabs.component';
 import { TableComponent, TableModalDialogComponent} from './table-general-info/table-general-info';
 import { TableDyComponent, TableDyModalDialogComponent } from './table-dy/table-dy.component';
 import { LoginComponent } from './login/login.component';
@@ -27,7 +26,6 @@ import {TableStateOfClaimService} from './table-state-of-claim/table-state-of-cl
   declarations: [
     AppComponent,
     TableComponent,
-    TabsComponent,
     TableModalDialogComponent,
     ExpandComponent,
     TableDyComponent,
@@ -36,7 +34,7 @@ import {TableStateOfClaimService} from './table-state-of-claim/table-state-of-cl
     SafeHtmlPipe,
     PdfToPrintTestComponent,
     EditPdfTemplateComponent,
-      TableStateOfClaimComponent,
+    TableStateOfClaimComponent,
 ],
   imports: [
     BrowserModule,
@@ -49,7 +47,7 @@ import {TableStateOfClaimService} from './table-state-of-claim/table-state-of-cl
     RouterModule.forRoot([
         {
             path: '',
-            component: TabsComponent
+            component: TableComponent
         },
         {
             path: 'login',
@@ -62,6 +60,14 @@ import {TableStateOfClaimService} from './table-state-of-claim/table-state-of-cl
         {
             path: 'edit-template',
             component: EditPdfTemplateComponent
+        },
+        {
+            path: 'dy',
+            component: TableDyComponent
+        },
+        {
+            path: 'state-of-claim',
+            component: TableStateOfClaimComponent
         }
     ])
   ],
