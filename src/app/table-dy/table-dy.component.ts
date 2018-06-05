@@ -115,8 +115,8 @@ export class TableDyComponent implements OnInit {
         });
     }
 
-    PrintPdf(): void {
-        PdfToPrintTestComponent.getSelectedPdf(this.pdfTemplates[0]);
+    PrintPdf(template): void {
+        PdfToPrintTestComponent.getSelectedPdf(template);
         PdfToPrintTestComponent.getUsersPdf(this.selection.selected);
         this.router.navigateByUrl('/pdf-to-print');
     }

@@ -17,7 +17,7 @@ export class EditPdfTemplateComponent implements OnInit {
   constructor(private pdfTemplateService: PdfTemplateService , private router: Router) {}
 
   getTemplates(): void {
-      this.pdfTemplateService.getTemplatesService()
+      this.pdfTemplateService.getTemplates()
           .then(templates => this.template = templates);
   }
 

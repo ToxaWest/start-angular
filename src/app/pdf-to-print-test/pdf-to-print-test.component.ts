@@ -35,22 +35,30 @@ export class PdfToPrintTestComponent implements OnInit {
   }
 
   getTemplates(): void {
-      this.pdfTemplateService.getTemplatesService()
+      this.pdfTemplateService.getTemplates()
           .then(templates => this.template = templates)
           .then(this._selectedTemplate = PdfToPrintTestComponent._selectedTemplate)
           .then(this._users = PdfToPrintTestComponent.users)
-          .then(() => this.makeTemplate(this._users));
+          .then(() => this.makeTemplate(this._users , this._selectedTemplate));
   }
 
-  makeTemplate (user) {
+  makeTemplate (user , useTemplate) {
       const template = [];
       let newTemplate: any;
-      if (typeof this._selectedTemplate === 'undefined') {
-          newTemplate = this.template[0].data.replace(/&lt;/gm , '<' ).replace(/&gt;/gm , '>');
-      } else if (this._selectedTemplate.template === 'notification') {
-          newTemplate = this.template[2].data.replace(/&lt;/gm , '<' ).replace(/&gt;/gm , '>');
+      if (typeof useTemplate === 'undefined') {
+          newTemplate = this.template[0].data
+              .replace(/&lt;/gm , '<' )
+              .replace(/&gt;/gm , '>');
+      } else if (useTemplate === 'notification') {
+          this.pdfTemplateService.getTemplateNotifications()
+              .subscribe(data => console.log(data));
+              // .replace(/&lt;/gm , '<' )
+              // .replace(/&gt;/gm , '>');
+
       } else {
-          newTemplate = this._selectedTemplate.data.replace(/&lt;/gm , '<' ).replace(/&gt;/gm , '>');
+          newTemplate = this._selectedTemplate.data
+              .replace(/&lt;/gm , '<' )
+              .replace(/&gt;/gm , '>');
       }
       const text_template = _.template(newTemplate);
       if (typeof user !== 'undefined') {
