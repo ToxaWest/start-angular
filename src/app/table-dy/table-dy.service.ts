@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Element, ElementTemplate, ElementActions, UpdateElement, ElementResult} from './table-dy';
+import {Element, ElementTemplate, ElementActions, UpdateElement} from './table-dy';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {catchError, tap} from 'rxjs/operators';
