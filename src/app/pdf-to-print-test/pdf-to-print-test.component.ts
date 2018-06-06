@@ -71,7 +71,7 @@ export class PdfToPrintTestComponent implements OnInit {
   }
 
   cteateTemplate(user , newTemplate) {
-      const template:any = [];
+      const template: any = [];
       const text_template = _.template(newTemplate);
       if (typeof user !== 'undefined') {
           for (let i = 0; i < user.length; i++) {
