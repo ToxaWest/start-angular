@@ -1,5 +1,5 @@
 @import "css/font-awesome.min.css";
-@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 h1 {
     color: #369;
@@ -12,13 +12,18 @@ h2, h3 {
     font-weight: lighter;
 }
 body {
-    max-width: 1280px;
+    max-width: 90vw;
     margin: auto;
 }
+@media screen  and (max-width: 1280px){
+    body {
+        max-width: 100%;
+    }
+}
 body, input[text], button {
-    color: #888;
+    color: #171717;
     font-family: Cambria, Georgia, sans-serif;
-    background-color: #171717;
+    background-color: #fff;
 }
 /* everywhere else */
 .mat-grid-tile .mat-figure{
@@ -30,7 +35,7 @@ body, input[text], button {
 .mat-row{
     transition: 0.2s;
     &:hover{
-        background-color: #636363;
+        background-color: #e4e4e4;
     }
 }
 * {

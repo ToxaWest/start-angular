@@ -2,9 +2,8 @@ import { TemplatesInterface } from './templates-interface';
 
 export const TEMPLATES: TemplatesInterface[] = [
     {
-        id: 1,
-        type: 'Общая информация',
-        data: '<div style="text-align: left;"><img src="/assets/logo.jpg" style="background-color: transparent;"></div><div style="text-align: center;"><span style="background-color: transparent;"><b>К О М У Н А Л Ь Н Е П І Д П Р И Є М С Т В О</b></span></div><div style="text-align: center;"><span style="background-color: transparent;"><b>&nbsp;„Ж И Л К О М С Е Р В І С”&nbsp;</b></span></div><div><hr id="null"><div style="text-align: right;">&lt;%= name %&gt;&nbsp;</div><div style="text-align: right;">&lt;%= address %&gt;&nbsp;</div><div><br></div><div style="text-align: center;"><b>ВЫМОГА&nbsp;</b></div><div><br></div><div style="text-align: justify;">&nbsp; &nbsp; &nbsp;Доводимо до Вашого відома, що по Вашому особовому рахунку №&lt;%= number %&gt;&nbsp;станом на &lt;%= todayDate %&gt;року\n' +
+        name: 'Общая информация',
+        template: '<div style="text-align: left;"><img src="/assets/logo.jpg" style="background-color: transparent;"></div><div style="text-align: center;"><span style="background-color: transparent;"><b>К О М У Н А Л Ь Н Е П І Д П Р И Є М С Т В О</b></span></div><div style="text-align: center;"><span style="background-color: transparent;"><b>&nbsp;„Ж И Л К О М С Е Р В І С”&nbsp;</b></span></div><div><hr id="null"><div style="text-align: right;">&lt;%= name %&gt;&nbsp;</div><div style="text-align: right;">&lt;%= address %&gt;&nbsp;</div><div><br></div><div style="text-align: center;"><b>ВЫМОГА&nbsp;</b></div><div><br></div><div style="text-align: justify;">&nbsp; &nbsp; &nbsp;Доводимо до Вашого відома, що по Вашому особовому рахунку №&lt;%= number %&gt;&nbsp;станом на &lt;%= todayDate %&gt;року\n' +
             'виникла заборгованість перед КП «Жилкомсервіс» в сумі &lt;%= debt %&gt;грн.&nbsp;</div><div style="text-align: justify;">&nbsp; &nbsp; &nbsp;У зв\'язку з наявністю у Вас\n' +
             'невиконаних зобов\'язань щодо оплати послуг з утримання будинків і споруд та прибудинкових територій, з\n' +
             'метою попередження звернення КП «Жилкомсервіс» до суду з заявою/позовом про стягнення з Вас заборгованості\n' +
@@ -18,9 +17,8 @@ export const TEMPLATES: TemplatesInterface[] = [
             'платіжних документів до бухгалтерії дільниці №&nbsp;41 КП «Жилкомсервіс».</div></div>'
     },
     {
-        id: 2,
         type: 'Исковые заявления',
-        data: `<img src="/assets/logo.jpg"/>К О М У Н А Л Ь Н Е П І Д П Р И Є М С Т В О „Ж И Л К О М С Е Р В І С”
+        template: `<img src="/assets/logo.jpg"/>К О М У Н А Л Ь Н Е П І Д П Р И Є М С Т В О „Ж И Л К О М С Е Р В І С”
 <%= name %>
 <%= address %>
 ВЫМОГА
@@ -38,9 +36,8 @@ export const TEMPLATES: TemplatesInterface[] = [
 платіжних документів до бухгалтерії дільниці № 41 КП «Жилкомсервіс».`
     },
     {
-        id: 3,
-        type: 'Ду',
-        data: '<div style="text-align: right;">Додаток № ___ до Наказу № ___ від __________&nbsp;<br></div><div style="text-align: right;"><span style="background-color: transparent;">"До _______________________&nbsp;</span></div><div style="text-align: right;">суду м. Харкова&nbsp;</div><div style="text-align: right;">вул. _____________, м. Харків,&nbsp;</div><div style="text-align: right;">індекс ______&nbsp;</div><div style="text-align: right;">Заявник: Комунальне підприємство&nbsp;</div><div style="text-align: right;">«Жилкомсервіс»&nbsp;</div><div style="text-align: right;">вул. Конторська, 35, м. Харків,&nbsp;</div><div style="text-align: right;">61052&nbsp;</div><div style="text-align: right;">код ЄДРПОУ: 34467793&nbsp;</div><div style="text-align: right;">тел.: +380577607238&nbsp;</div><div style="text-align: right;">E-mail:\n' +
+        name: 'Ду',
+        template: '<div style="text-align: right;">Додаток № ___ до Наказу № ___ від __________&nbsp;<br></div><div style="text-align: right;"><span style="background-color: transparent;">"До _______________________&nbsp;</span></div><div style="text-align: right;">суду м. Харкова&nbsp;</div><div style="text-align: right;">вул. _____________, м. Харків,&nbsp;</div><div style="text-align: right;">індекс ______&nbsp;</div><div style="text-align: right;">Заявник: Комунальне підприємство&nbsp;</div><div style="text-align: right;">«Жилкомсервіс»&nbsp;</div><div style="text-align: right;">вул. Конторська, 35, м. Харків,&nbsp;</div><div style="text-align: right;">61052&nbsp;</div><div style="text-align: right;">код ЄДРПОУ: 34467793&nbsp;</div><div style="text-align: right;">тел.: +380577607238&nbsp;</div><div style="text-align: right;">E-mail:\n' +
         'kantselyariya@zhks.kharkov.ua&nbsp;</div><div style="text-align: right;">Представник заявника: ПІБ _______________&nbsp;</div><div style="text-align: right;">вул. _____________, м. Харків,&nbsp;</div><div style="text-align: right;">поштовий індекс ______&nbsp;</div><div style="text-align: right;">Боржники: ПІБ _______________, ____ р.н.,&nbsp;</div><div style="text-align: right;">вул. _____________, м. Харків,&nbsp;</div><div style="text-align: right;">поштовий індекс ______&nbsp;</div><div style="text-align: right;">РНОКПП: _________&nbsp;</div><div style="text-align: right;">тел. _________ (за наявності)&nbsp;</div><div style="text-align: right;">E-mail:_______ (за наявності)&nbsp;</div><div style="text-align: right;">ПІБ _______________, ____ р.н.,&nbsp;</div><div style="text-align: right;">вул. _____________, м. Харків,&nbsp;</div><div style="text-align: right;">поштовий індекс ______&nbsp;</div><div style="text-align: right;">РНОКПП: _________&nbsp;</div><div style="text-align: right;">тел. _________ (за наявності)&nbsp;</div><div style="text-align: right;">E-mail:_______ (за наявності)&nbsp;</div><div><br></div><div style="text-align: center;"><b>ЗАЯВА&nbsp;</b></div><div style="text-align: center;"><b>про видачу судового наказу&nbsp;</b></div><div><br></div><div>&nbsp; &nbsp; &nbsp; Боржник(и) мешкають за адресою: м. Харків, вул. ____________, кв. ___, та є власниками (співвласниками) житлового приміщення. Згідно з ч. 2 ст. 10\n' +
         'Закону України «Про приватизацію державного житлового фонду», ст. 382\n' +
         'Цивільного Кодексу України, п. 7 «Правил користування приміщеннями\n' +

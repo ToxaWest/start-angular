@@ -17,9 +17,11 @@ export class PdfToPrintTestComponent implements OnInit {
   todayDate: any;
   data = [];
   template: TemplatesInterface[];
+
   static getUsersPdf(selected: any) {
       this.users = selected;
   }
+
   static getSelectedPdf(selected: any) {
       this._selectedTemplate = selected;
   }
@@ -39,34 +41,44 @@ export class PdfToPrintTestComponent implements OnInit {
           .then(templates => this.template = templates)
           .then(this._selectedTemplate = PdfToPrintTestComponent._selectedTemplate)
           .then(this._users = PdfToPrintTestComponent.users)
-          .then(() => this.makeTemplate(this._users , this._selectedTemplate));
+          .then(() => this.makeTemplate(this._selectedTemplate));
   }
 
-  makeTemplate (user , useTemplate) {
-      const template = [];
+  makeTemplate (useTemplate) {
       let newTemplate: any;
       if (typeof useTemplate === 'undefined') {
-          newTemplate = this.template[0].data
+          newTemplate = this.template[0].template
               .replace(/&lt;/gm , '<' )
               .replace(/&gt;/gm , '>');
+          this.cteateTemplate(this._users , newTemplate);
       } else if (useTemplate === 'notification') {
           this.pdfTemplateService.getTemplateNotifications()
-              .subscribe(data => console.log(data));
-              // .replace(/&lt;/gm , '<' )
-              // .replace(/&gt;/gm , '>');
+              .subscribe(data => {
+                  newTemplate = data[0].template
+                        .replace(/&lt;/gm , '<' )
+                        .replace(/&gt;/gm , '>');
+                  this.cteateTemplate(this._users , newTemplate);
+                  }
+              );
 
       } else {
           newTemplate = this._selectedTemplate.data
               .replace(/&lt;/gm , '<' )
               .replace(/&gt;/gm , '>');
+          this.cteateTemplate(this._users , newTemplate);
       }
+
+  }
+
+  cteateTemplate(user , newTemplate) {
+      const template = [];
       const text_template = _.template(newTemplate);
       if (typeof user !== 'undefined') {
           for (let i = 0; i < user.length; i++) {
               user[i].todayDate = this.todayDate;
               const Templete = text_template(user[i]);
               template.push(
-                  Templete
+                  Templete.slice(0, -1).concat('<div class="new-page"></div>')
               );
           }
       }

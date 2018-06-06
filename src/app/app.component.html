@@ -1,11 +1,11 @@
 <h1 routerLink="/">{{title}}</h1>
 <nav>
-    <button mat-raised-button routerLink="/" routerLinkActive="active-link">Home</button>
+    <button mat-raised-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</button>
     <button mat-raised-button routerLink="/edit-template" routerLinkActive="active-link">Edit Pdf Template</button>
 </nav>
 <br>
 <nav>
-    <button mat-raised-button routerLink="" routerLinkActive="active-link">Общая информация</button>
+    <button mat-raised-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Общая информация</button>
     <button mat-raised-button routerLink="/dy" routerLinkActive="active-link">Ду</button>
     <button mat-raised-button routerLink="/state-of-claim" routerLinkActive="active-link">Исковые заявления</button>
 </nav>

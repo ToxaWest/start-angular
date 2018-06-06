@@ -16,10 +16,10 @@ export class PdfTemplateService {
     constructor(
         private http: HttpClient) { }
 
-  getTemplateNotifications(): Observable<any[]> {
-      return this.http.get<any[]>('http://217.12.219.175:3080/init/template/claim_order_request')
+  getTemplateNotifications(): Observable<TemplatesInterface[]> {
+      return this.http.get<TemplatesInterface[]>('http://217.12.219.175:3080/init/template/claim_order_request')
           .pipe(
-              tap(TemplateNotifications => console.log(TemplateNotifications)),
+              tap(TemplateNotifications => TemplateNotifications),
               catchError(this.handleError('getTableDy', []))
           );
   }
