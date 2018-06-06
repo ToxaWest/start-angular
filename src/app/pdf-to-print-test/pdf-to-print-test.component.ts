@@ -71,18 +71,18 @@ export class PdfToPrintTestComponent implements OnInit {
   }
 
   cteateTemplate(user , newTemplate) {
-      const template = [];
+      const template:any = [];
       const text_template = _.template(newTemplate);
       if (typeof user !== 'undefined') {
           for (let i = 0; i < user.length; i++) {
               user[i].todayDate = this.todayDate;
               const Templete = text_template(user[i]);
               template.push(
-                  Templete.slice(0, -1).concat('<div class="new-page"></div>')
+                  Templete
               );
           }
       }
-      this.data = template;
+      this.data = template.join('<div class="new-page"></div>');
   }
 
   ngOnInit() {
