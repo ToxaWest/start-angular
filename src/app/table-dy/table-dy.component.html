@@ -4,20 +4,20 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Поиск">
     </mat-form-field>
   </div>
-  <div style="display: flex; justify-content: space-between">
-    <div>
-    <mat-select placeholder="Select Action" style="margin: 10px; max-width: 300px;" [(value)]="selectedAction">
-      <mat-option *ngFor="let action of actions" [value]="action" (click)="UserAction()">
-        {{ action.name }}
-      </mat-option>
-    </mat-select>
-    <mat-select placeholder="Select Template" style="margin: 10px; max-width: 300px;" >
+  <hr style="width: 100%">
+  <div style="display: flex; justify-content: space-between; width: 100%; padding: 5px; box-sizing: border-box">
+    <mat-select placeholder="Select Template" style="padding: 10px; max-width: 300px;border: 1px solid #ccc;" >
       <mat-option *ngFor="let pdfTemplate of pdfTemplates" [value]="pdfTemplate.name" (click)="PrintPdf(pdfTemplate.template)">
         {{ pdfTemplate.name }}
       </mat-option>
     </mat-select>
-    </div>
+    <mat-select placeholder="Select Action" style="padding: 10px; max-width: 300px;border: 1px solid #ccc;" [(value)]="selectedAction">
+      <mat-option *ngFor="let action of actions" [value]="action" (click)="UserAction()">
+        {{ action.name }}
+      </mat-option>
+    </mat-select>
   </div>
+  <hr style="width: 100%">
   <mat-table #table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="select">
       <mat-header-cell *matHeaderCellDef style="flex: 0 0 4%">
@@ -34,39 +34,39 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="dname">
-      <mat-header-cell *matHeaderCellDef > {{structure[0].title}}</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[0].title}}</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.dname}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="bname">
-      <mat-header-cell *matHeaderCellDef > {{structure[1].title}} </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[1].title}} </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.bname}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="stname">
-      <mat-header-cell *matHeaderCellDef> {{structure[2].title}} </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[2].title}} </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.stname}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="sname">
-      <mat-header-cell *matHeaderCellDef > {{structure[3].title}}  </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[3].title}}  </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.sname}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="hname">
-      <mat-header-cell *matHeaderCellDef > {{structure[4].title}} </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[4].title}} </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.hname}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="hpart">
-      <mat-header-cell *matHeaderCellDef > {{structure[5].title}} </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[5].title}} </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.hpart}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="fnum">
-      <mat-header-cell *matHeaderCellDef> {{structure[6].title}}  </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[6].title}}  </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.fnum}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="saldo">
-      <mat-header-cell *matHeaderCellDef> {{structure[7].title}} </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[7].title}} </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.saldo}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="op_date">
-      <mat-header-cell *matHeaderCellDef > {{structure[8].title}}  </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[8].title}}  </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.op_date}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

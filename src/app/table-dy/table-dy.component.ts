@@ -34,6 +34,7 @@ export class TableDyComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
 
     applyFilter(filterValue: string) {
+        console.log(this.dataSource);
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 

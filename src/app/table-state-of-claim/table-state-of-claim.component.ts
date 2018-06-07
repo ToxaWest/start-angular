@@ -18,14 +18,50 @@ export class TableStateOfClaimComponent implements OnInit {
   selection;
   structure;
   Users;
+  filteredData = {
+      dname:[],
+      bname:[],
+      stname:[],
+      sname:[],
+      hpart:[],
+      hname:[]
+  };
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  applyFilter(filterValue: string) {
-      filterValue = filterValue.trim();
-      filterValue = filterValue.toLowerCase();
-      this.dataSource.filter = filterValue;
+  applyFilter(column: string, filterValue: string) {
+      console.log(filterValue);
+      if (column === 'dname') {
+          this.filteredData.dname = filterValue.trim().toLowerCase();
+      }
+      if (column === 'bname') {
+          this.filteredData.bname = filterValue.trim().toLowerCase();
+      }
+      if (column === 'stname') {
+          this.filteredData.stname = filterValue.trim().toLowerCase();
+      }
+      if (column === 'sname') {
+          this.filteredData.sname = filterValue.trim().toLowerCase();
+      }
+      if (column === 'hpart') {
+          this.filteredData.hpart = filterValue.trim().toLowerCase();
+      }
+      if (column === 'hname') {
+          this.filteredData.hname = filterValue.trim().toLowerCase();
+      }
+     console.log(this.filteredData);
+      this.dataSource.filterPredicate = function (data: ElementResult) {
+          const compRes =
+              data.bname.trim().toLowerCase().indexOf(this.filteredData.bname) !== -1 &&
+              data.dname.trim().toLowerCase().indexOf(this.filteredData.dname) !== -1 &&
+              data.stname.trim().toLowerCase().indexOf(this.filteredData.stname) !== -1 &&
+              data.sname.trim().toLowerCase().indexOf(this.filteredData.sname) !== -1 &&
+              data.hpart.trim().toLowerCase().indexOf(this.filteredData.hpart) !== -1 &&
+              data.hname.trim().toLowerCase().indexOf(this.filteredData.hname) !== -1;
+          return compRes;
+      };
+      this.dataSource.filter = '';
   }
 
   constructor(
