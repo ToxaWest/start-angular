@@ -34,12 +34,16 @@ export class TableDyComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
-    applyFilter(column: string, filterValue: string) {
+    applyFilter(column: string, filterValue: any) {
+        if (this.filteredData.hasOwnProperty(column)) {
+            if (filterValue === undefined) {
+                this.filteredData[column] = '';
+            } else {
+                this.filteredData[column] = filterValue.trim().toLowerCase();
+            }
+        }
         const _this = this;
         this.dataSource.filterPredicate = function (data: ElementResult) {
-            if (_this.filteredData.hasOwnProperty(column)) {
-                _this.filteredData[column] = filterValue.trim().toLowerCase();
-            }
             const boolean =
                 data.bname.trim().toLowerCase().indexOf(_this.filteredData.bname) !== -1 &&
                 data.dname.trim().toLowerCase().indexOf(_this.filteredData.dname) !== -1 &&
@@ -52,7 +56,7 @@ export class TableDyComponent implements OnInit {
                 data.sname.trim().toLowerCase().indexOf(_this.filteredData.sname) !== -1 ;
             return boolean;
         };
-        this.dataSource.filter = filterValue;
+        this.dataSource.filter = 'remove default filter';
     }
 
     constructor(
@@ -100,7 +104,7 @@ export class TableDyComponent implements OnInit {
         for (let i = 0; i < columns.length; i++) {
           if (columns[i].visible) {
             this.displayedColumns.push(columns[i].name);
-            this.filteredData[columns[i].name] = '';
+            this.filteredData[columns[i].name] = ``;
           }
         }
     }
