@@ -22,7 +22,7 @@
 .example-container {
     display: flex;
     flex-direction: column;
-    min-width: 300px;
+    min-width: 290px;
 }
 
 .example-header {

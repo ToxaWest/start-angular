@@ -22,39 +22,39 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="dname">
-      <mat-header-cell *matHeaderCellDef > {{structure[0].title}}</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[0].title}}</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.dname}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="bname">
-      <mat-header-cell *matHeaderCellDef > {{structure[1].title}} </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[1].title}} </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.bname}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="stname">
-      <mat-header-cell *matHeaderCellDef> {{structure[2].title}} </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[2].title}} </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.stname}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="sname">
-      <mat-header-cell *matHeaderCellDef > {{structure[3].title}}  </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[3].title}}  </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.sname}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="hname">
-      <mat-header-cell *matHeaderCellDef > {{structure[4].title}} </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[4].title}} </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.hname}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="hpart">
-      <mat-header-cell *matHeaderCellDef > {{structure[5].title}} </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[5].title}} </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.hpart}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="fnum">
-      <mat-header-cell *matHeaderCellDef> {{structure[6].title}}  </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[6].title}}  </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.fnum}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="saldo">
-      <mat-header-cell *matHeaderCellDef> {{structure[7].title}} </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[7].title}} </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.saldo}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="op_date">
-      <mat-header-cell *matHeaderCellDef > {{structure[8].title}}  </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{structure[8].title}}  </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.op_date}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

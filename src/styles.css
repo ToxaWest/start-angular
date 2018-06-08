@@ -12,7 +12,7 @@ h3 {
   font-weight: lighter;
 }
 body {
-  max-width: 90vw;
+  max-width: 94vw;
   margin: auto;
 }
 @media screen and (max-width: 1280px) {
@@ -25,7 +25,7 @@ input[text],
 button {
   color: #171717;
   font-family: Cambria, Georgia, sans-serif;
-  background-color: #fff;
+  background-color: #f1f1f1;
 }
 /* everywhere else */
 .mat-grid-tile .mat-figure {
