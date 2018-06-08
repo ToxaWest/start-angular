@@ -3,16 +3,16 @@
     <mat-option *ngFor="let templates of template"
                 (click)="selectPdf(templates)"
                 value="{{templates}}">
-      {{templates.type}}
+      {{templates.name}}
     </mat-option>
   </mat-select>
 </mat-form-field>
 <div *ngIf="selected" style="display: flex; position: absolute; left: 2vw; width: 96vw">
 <div style="max-width: 50%;width: 100%">
-    <app-ngx-editor [placeholder]="selectedTemplate.data" [spellcheck]="true" [(ngModel)]="selectedTemplate.data" ></app-ngx-editor>
+    <app-ngx-editor [placeholder]="selectedTemplate.template" [spellcheck]="true" [(ngModel)]="selectedTemplate.template" ></app-ngx-editor>
   <button mat-button color="primary" (click)="savePdf()">Generate ALL to PDF</button>
 </div>
 <div style="max-width: 48%; padding: 20px; background-color: #fff; margin: 0 1%">
-  <div class="pdf-view" [innerHTML]="selectedTemplate.data | safeHtml"></div>
+  <div class="pdf-view" [innerHTML]="selectedTemplate.template | safeHtml"></div>
 </div>
 </div>
