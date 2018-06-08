@@ -12,13 +12,16 @@ import {ElementResult} from '../table-dy/table-dy';
 })
 export class TableStateOfClaimComponent implements OnInit {
 
-  data: any;
-  displayedColumns = ['select'];
-  dataSource;
-  selection;
-  structure;
-  Users;
-  filteredData: {[k: string]: any} = {};
+    displayedColumns = ['select'];
+    dataSource;
+    Users: any;
+    data: any;
+    structure: any;
+    selectedAction: any;
+    pdfTemplates;
+    actions;
+    selection;
+    filteredData: {[k: string]: any} = {};
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -81,7 +84,21 @@ export class TableStateOfClaimComponent implements OnInit {
               this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  getDisplayColumns(columns): void {
+  getTableDyTemplate(): void {
+      this.tableDyService.getTableDyTemplate()
+          .subscribe(pdfTemplates => this.pdfTemplates = pdfTemplates);
+  }
+
+    UserAction(): void {
+        const putUsers = {'did': []};
+        for (let i = 0; i < this.selection.selected.length; i++) {
+            putUsers.did.push(this.selection.selected[i].did);
+        }
+        this.tableDyService.updateTableDy(putUsers)
+            .subscribe(() => this.router.navigateByUrl('/state-of-claim'));
+    }
+
+    getDisplayColumns(columns): void {
         for (let i = 0; i < columns.length; i++) {
           if (columns[i].visible) {
             this.displayedColumns.push(columns[i].name);

@@ -17,10 +17,18 @@ export class PdfTemplateService {
         private http: HttpClient) { }
 
   getTemplateNotifications(): Observable<TemplatesInterface[]> {
-      return this.http.get<TemplatesInterface[]>('http://217.12.219.175:3080/init/template/claim_order_request')
+      return this.http.get<TemplatesInterface[]>('http://217.12.219.175:3080/state-of-claim/template/notification')
           .pipe(
               tap(TemplateNotifications => TemplateNotifications),
               catchError(this.handleError('getTableDy', []))
+          );
+  }
+
+  getTemplateStateOfClaim(): Observable<TemplatesInterface[]> {
+      return this.http.get<TemplatesInterface[]>('http://217.12.219.175:3080/init/template/claim_order_request')
+          .pipe(
+              tap(TemplateStateOfClaim => TemplateStateOfClaim),
+              catchError(this.handleError('getTemplateStateOfClaim', []))
           );
   }
 

@@ -47,12 +47,16 @@ export class PdfToPrintTestComponent implements OnInit {
   makeTemplate (useTemplate) {
       let newTemplate: any;
       if (typeof useTemplate === 'undefined') {
-          newTemplate = this.template[0].template
-              .replace(/&lt;/gm , '<' )
-              .replace(/&gt;/gm , '>');
-          this.cteateTemplate(this._users , newTemplate);
-      } else if (useTemplate === 'notification') {
           this.pdfTemplateService.getTemplateNotifications()
+              .subscribe(data => {
+                      newTemplate = data[0].template
+                          .replace(/&lt;/gm , '<' )
+                          .replace(/&gt;/gm , '>');
+                      this.cteateTemplate(this._users , newTemplate);
+                  }
+              );
+      } else if (useTemplate === 'claim_order_request') {
+          this.pdfTemplateService.getTemplateStateOfClaim()
               .subscribe(data => {
                   newTemplate = data[0].template
                         .replace(/&lt;/gm , '<' )
@@ -61,6 +65,15 @@ export class PdfToPrintTestComponent implements OnInit {
                   }
               );
 
+      } else if (useTemplate === 'notification') {
+          this.pdfTemplateService.getTemplateNotifications()
+              .subscribe(data => {
+                      newTemplate = data[0].template
+                          .replace(/&lt;/gm , '<' )
+                          .replace(/&gt;/gm , '>');
+                      this.cteateTemplate(this._users , newTemplate);
+                  }
+              );
       } else {
           newTemplate = this._selectedTemplate.data
               .replace(/&lt;/gm , '<' )
@@ -76,6 +89,18 @@ export class PdfToPrintTestComponent implements OnInit {
       if (typeof user !== 'undefined') {
           for (let i = 0; i < user.length; i++) {
               user[i].todayDate = this.todayDate;
+              if (!user[i].address) {
+                  user[i].address = 'none';
+              }
+              if (!user[i].name) {
+                  user[i].name = 'none';
+              }
+              if (!user[i].number) {
+                  user[i].number = 'none';
+              }
+              if (!user[i].debt) {
+                  user[i].debt = 'none';
+              }
               const Templete = text_template(user[i]);
               template.push(
                   Templete
