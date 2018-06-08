@@ -77,14 +77,18 @@ export class TableDyComponent implements OnInit {
 
     isAllSelected() {
         const numSelected = this.selection.selected.length;
-        const numRows = this.dataSource.data.length;
+        const numRows = this.dataSource.filteredData.length > 0 ?
+            this.dataSource.filteredData.length :
+            this.dataSource.data.length;
         return numSelected === numRows;
     }
 
     masterToggle() {
         this.isAllSelected() ?
             this.selection.clear() :
-            this.dataSource.data.forEach(row => this.selection.select(row));
+            this.dataSource.filteredData.length > 0 ?
+                this.dataSource.filteredData.forEach(row => this.selection.select(row)) :
+                this.dataSource.data.forEach(row => this.selection.select(row));
     }
 
     getTableDyTemplate(): void {
