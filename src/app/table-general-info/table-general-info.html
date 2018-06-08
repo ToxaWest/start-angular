@@ -1,9 +1,11 @@
 <app-expand></app-expand>
 <div class="example-container mat-elevation-z8">
-  <div class="example-header">
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Поиск">
-    </mat-form-field>
+  <div class="example-header" style="display: flex; flex-wrap: wrap">
+    <div *ngFor="let column of structure" style="margin: 5px">
+      <mat-form-field *ngIf="column.name !== 'did'">
+        <input matInput (keyup)="applyFilter(column.name , $event.target.value)" placeholder="{{column.title}}">
+      </mat-form-field>
+    </div>
   </div>
   <div class="button-row">
     <button mat-button color="accent" (click)="PrintPdf()">Generate Selected to PDF</button>

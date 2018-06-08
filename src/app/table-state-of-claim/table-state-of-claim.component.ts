@@ -18,50 +18,30 @@ export class TableStateOfClaimComponent implements OnInit {
   selection;
   structure;
   Users;
-  filteredData = {
-      dname:[],
-      bname:[],
-      stname:[],
-      sname:[],
-      hpart:[],
-      hname:[]
-  };
+  filteredData: {[k: string]: any} = {};
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   applyFilter(column: string, filterValue: string) {
-      console.log(filterValue);
-      if (column === 'dname') {
-          this.filteredData.dname = filterValue.trim().toLowerCase();
-      }
-      if (column === 'bname') {
-          this.filteredData.bname = filterValue.trim().toLowerCase();
-      }
-      if (column === 'stname') {
-          this.filteredData.stname = filterValue.trim().toLowerCase();
-      }
-      if (column === 'sname') {
-          this.filteredData.sname = filterValue.trim().toLowerCase();
-      }
-      if (column === 'hpart') {
-          this.filteredData.hpart = filterValue.trim().toLowerCase();
-      }
-      if (column === 'hname') {
-          this.filteredData.hname = filterValue.trim().toLowerCase();
-      }
-     console.log(this.filteredData);
+      const _this = this;
       this.dataSource.filterPredicate = function (data: ElementResult) {
-          const compRes =
-              data.bname.trim().toLowerCase().indexOf(this.filteredData.bname) !== -1 &&
-              data.dname.trim().toLowerCase().indexOf(this.filteredData.dname) !== -1 &&
-              data.stname.trim().toLowerCase().indexOf(this.filteredData.stname) !== -1 &&
-              data.sname.trim().toLowerCase().indexOf(this.filteredData.sname) !== -1 &&
-              data.hpart.trim().toLowerCase().indexOf(this.filteredData.hpart) !== -1 &&
-              data.hname.trim().toLowerCase().indexOf(this.filteredData.hname) !== -1;
-          return compRes;
+          if (_this.filteredData.hasOwnProperty(column)) {
+              _this.filteredData[column] = filterValue.trim().toLowerCase();
+          }
+          const boolean =
+              data.bname.trim().toLowerCase().indexOf(_this.filteredData.bname) !== -1 &&
+              data.dname.trim().toLowerCase().indexOf(_this.filteredData.dname) !== -1 &&
+              data.fnum.trim().toLowerCase().indexOf(_this.filteredData.fnum) !== -1 &&
+              data.hname.trim().toLowerCase().indexOf(_this.filteredData.hname) !== -1 &&
+              data.hpart.trim().toLowerCase().indexOf(_this.filteredData.hpart) !== -1 &&
+              data.op_date.trim().toLowerCase().indexOf(_this.filteredData.op_date) !== -1 &&
+              data.saldo.toString().trim().toLowerCase().indexOf(_this.filteredData.saldo) !== -1 &&
+              data.stname.trim().toLowerCase().indexOf(_this.filteredData.stname) !== -1 &&
+              data.sname.trim().toLowerCase().indexOf(_this.filteredData.sname) !== -1 ;
+          return boolean;
       };
-      this.dataSource.filter = '';
+      this.dataSource.filter = filterValue;
   }
 
   constructor(
@@ -76,8 +56,8 @@ export class TableStateOfClaimComponent implements OnInit {
             this.dataSource = new MatTableDataSource(this.data.results);
             this.AfterViewInit();
             this.structure = this.data.structure;
-            this.Users = this.dataSource.data;
             this.getDisplayColumns(this.structure);
+            this.Users = this.dataSource.data;
         });
   }
 
@@ -93,13 +73,14 @@ export class TableStateOfClaimComponent implements OnInit {
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  getDisplayColumns(columns) {
+  getDisplayColumns(columns): void {
         for (let i = 0; i < columns.length; i++) {
           if (columns[i].visible) {
             this.displayedColumns.push(columns[i].name);
+            this.filteredData[columns[i].name] = '';
           }
         }
-    }
+  }
 
   ngOnInit() {
     this.getTableStateOfClaim();

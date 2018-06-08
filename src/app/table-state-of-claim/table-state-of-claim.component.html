@@ -1,23 +1,10 @@
 <div class="example-container mat-elevation-z8">
-  <div class="example-header">
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter('dname' , $event.target.value)" placeholder="Район">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter('bname' , $event.target.value)" placeholder="Участок">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter('stname' , $event.target.value)" placeholder="Тип">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter('sname' , $event.target.value)" placeholder="Улица">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter('hname' , $event.target.value)" placeholder="Дом">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter('hpart' , $event.target.value)" placeholder="Корпус">
-    </mat-form-field>
+  <div class="example-header" style="display: flex; flex-wrap: wrap">
+    <div *ngFor="let column of structure" style="margin: 5px">
+      <mat-form-field *ngIf="column.name !== 'did'">
+          <input matInput (keyup)="applyFilter(column.name , $event.target.value)" placeholder="{{column.title}}">
+      </mat-form-field>
+    </div>
   </div>
   <mat-table #table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="select">
