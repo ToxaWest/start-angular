@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { TemplatesInterface } from './templates-interface';
-import { TEMPLATES } from './pdf-templates';
 import {Observable} from 'rxjs/Observable';
 import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs/observable/of';
@@ -9,12 +8,8 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class PdfTemplateService {
 
-  getTemplates(): Promise<TemplatesInterface[]> {
-    return Promise.resolve(TEMPLATES);
-  }
-
-    constructor(
-        private http: HttpClient) { }
+  constructor(
+      private http: HttpClient) { }
 
   getTemplateNotifications(): Observable<TemplatesInterface[]> {
       return this.http.get<TemplatesInterface[]>('http://217.12.219.175:3080/state-of-claim/template/notification')

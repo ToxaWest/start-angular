@@ -17,7 +17,6 @@ import {PdfToPrintTestComponent} from './pdf-to-print-test/pdf-to-print-test.com
 import {TableStateOfClaimComponent} from './table-state-of-claim/table-state-of-claim.component';
 // Services //
 import {TableBasicService} from './services/table-basic.service';
-import {PdfToPrintTestService} from './services/pdf-to-print-test.service';
 import {PdfTemplateService} from './services/pdf-template.service';
 import {TableDyService} from './table-dy/table-dy.service';
 import {TableStateOfClaimService} from './table-state-of-claim/table-state-of-claim.service';
@@ -73,7 +72,6 @@ import {TableStateOfClaimService} from './table-state-of-claim/table-state-of-cl
   ],
   providers: [
       TableBasicService,
-      PdfToPrintTestService ,
       PdfTemplateService,
       TableStateOfClaimService,
       TableDyService

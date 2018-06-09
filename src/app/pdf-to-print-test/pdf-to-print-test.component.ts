@@ -36,14 +36,6 @@ export class PdfToPrintTestComponent implements OnInit {
       this.todayDate = (dd < 10 ? '0' + dd : dd) + '.' + (mm < 10 ? '0' + mm : mm) + '.' + yyyy;
   }
 
-  getTemplates(): void {
-      this.pdfTemplateService.getTemplates()
-          .then(templates => this.template = templates)
-          .then(this._selectedTemplate = PdfToPrintTestComponent._selectedTemplate)
-          .then(this._users = PdfToPrintTestComponent.users)
-          .then(() => this.makeTemplate(this._selectedTemplate));
-  }
-
   makeTemplate (useTemplate) {
       let newTemplate: any;
       if (typeof useTemplate === 'undefined') {
@@ -111,7 +103,9 @@ export class PdfToPrintTestComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.getTemplates();
+      this._selectedTemplate = PdfToPrintTestComponent._selectedTemplate;
+      this._users = PdfToPrintTestComponent.users;
+      this.makeTemplate(this._selectedTemplate);
       this.getTodayDate();
   }
 
