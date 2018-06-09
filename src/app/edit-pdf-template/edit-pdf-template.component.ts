@@ -57,8 +57,6 @@ export class EditPdfTemplateComponent implements OnInit {
 }
 
 import { DomSanitizer } from '@angular/platform-browser';
-import {TableDyService} from '../table-dy/table-dy.service';
-import {TableStateOfClaimService} from '../table-state-of-claim/table-state-of-claim.service';
 
 @Pipe({name: 'safeHtml'})
 export class SafeHtmlPipe implements PipeTransform {
