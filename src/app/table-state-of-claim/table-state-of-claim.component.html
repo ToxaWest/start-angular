@@ -8,12 +8,12 @@
   </div>
   <hr style="width: 100%">
   <div style="display: flex; justify-content: space-between; width: 100%; padding: 5px; box-sizing: border-box">
-    <mat-select placeholder="Select Template" style="padding: 10px; max-width: 300px;border: 1px solid #ccc;" >
+    <mat-select placeholder="Выберите шаблон" style="padding: 10px; max-width: 300px;border: 1px solid #ccc;" >
       <mat-option *ngFor="let pdfTemplate of pdfTemplates" [value]="pdfTemplate.name" (click)="PrintPdf(pdfTemplate.template)">
         {{ pdfTemplate.name }}
       </mat-option>
     </mat-select>
-    <mat-select placeholder="Select Action" style="padding: 10px; max-width: 300px;border: 1px solid #ccc;" [(value)]="selectedAction">
+    <mat-select placeholder="Выберете действие" style="padding: 10px; max-width: 300px;border: 1px solid #ccc;" [(value)]="selectedAction">
       <mat-option *ngFor="let action of actions" [value]="action" (click)="UserAction()">
         {{ action.name }}
       </mat-option>
