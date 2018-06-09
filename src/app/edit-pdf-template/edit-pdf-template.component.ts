@@ -14,6 +14,7 @@ export class EditPdfTemplateComponent implements OnInit {
   template = [];
   selectedTemplate: any;
   selected: any;
+  selectedTemplateData: any;
 
   constructor(
       private pdfTemplateService: PdfTemplateService ,
@@ -40,18 +41,24 @@ export class EditPdfTemplateComponent implements OnInit {
   }
 
   selectPdf(templates): void {
-      console.log(templates.template);
     if (templates.template === 'claim_order_request') {
         this.pdfTemplateService.getTemplateStateOfClaim()
-            .subscribe(data => this.selectedTemplate = data[0].template);
+            .subscribe(data => {
+                this.selectedTemplateData = data[0];
+                this.selectedTemplate = this.selectedTemplateData.template;
+            });
     } else if (templates.template === 'notification') {
         this.pdfTemplateService.getTemplateNotifications()
-            .subscribe(data => this.selectedTemplate = data[0].template);
+            .subscribe(data => {
+                this.selectedTemplateData = data[0];
+                this.selectedTemplate = this.selectedTemplateData.template;
+            });
     }
   }
 
-  savePdf () {
-      this.router.navigateByUrl('/');
+  savePdf() {
+      console.log(this.selectedTemplateData);
+      this.router.navigateByUrl('/' + this.selectedTemplateData.name);
   }
 
 }

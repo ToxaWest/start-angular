@@ -61,11 +61,11 @@ import {TableStateOfClaimService} from './table-state-of-claim/table-state-of-cl
             component: EditPdfTemplateComponent
         },
         {
-            path: 'dy',
+            path: 'notification',
             component: TableDyComponent
         },
         {
-            path: 'state-of-claim',
+            path: 'claim_order_request',
             component: TableStateOfClaimComponent
         }
     ])
