@@ -3,6 +3,8 @@ import {TableStateOfClaimService} from './table-state-of-claim.service';
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
 import {ElementResult} from '../table-dy/table-dy';
+import {Router} from '@angular/router';
+import {PdfToPrintTestComponent} from '../pdf-to-print-test/pdf-to-print-test.component';
 
 @Component({
   selector: 'app-table-state-of-claim',
@@ -54,6 +56,7 @@ export class TableStateOfClaimComponent implements OnInit {
   constructor(
       public dialog: MatDialog,
       private tableStateOfClaimService: TableStateOfClaimService,
+      private router: Router
   ) { }
 
   getTableStateOfClaim(): void {
@@ -84,31 +87,44 @@ export class TableStateOfClaimComponent implements OnInit {
               this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  getTableDyTemplate(): void {
-      this.tableDyService.getTableDyTemplate()
+  getTableStateOfClaimTemplate(): void {
+      this.tableStateOfClaimService.getStateOfClaimTemplate()
           .subscribe(pdfTemplates => this.pdfTemplates = pdfTemplates);
   }
 
-    UserAction(): void {
-        const putUsers = {'did': []};
-        for (let i = 0; i < this.selection.selected.length; i++) {
-            putUsers.did.push(this.selection.selected[i].did);
-        }
-        this.tableDyService.updateTableDy(putUsers)
-            .subscribe(() => this.router.navigateByUrl('/state-of-claim'));
-    }
+  UserAction(): void {
+      // const putUsers = {'did': []};
+      // for (let i = 0; i < this.selection.selected.length; i++) {
+      //     putUsers.did.push(this.selection.selected[i].did);
+      // }
+      // this.tableStateOfClaimService.updateTableStateOfClaim(putUsers)
+      //     .subscribe(() => this.router.navigateByUrl('/state-of-claim'));
+  }
 
-    getDisplayColumns(columns): void {
-        for (let i = 0; i < columns.length; i++) {
-          if (columns[i].visible) {
-            this.displayedColumns.push(columns[i].name);
-            this.filteredData[columns[i].name] = ``;
-          }
+  PrintPdf(template): void {
+      PdfToPrintTestComponent.getSelectedPdf(template);
+      PdfToPrintTestComponent.getUsersPdf(this.selection.selected);
+      this.router.navigateByUrl('/pdf-to-print');
+  }
+
+  getTableStateOfClaimActions(): void {
+      this.tableStateOfClaimService.getTableStateOfClaimActions()
+          .subscribe(actions => this.actions = actions);
+  }
+
+  getDisplayColumns(columns): void {
+      for (let i = 0; i < columns.length; i++) {
+        if (columns[i].visible) {
+          this.displayedColumns.push(columns[i].name);
+          this.filteredData[columns[i].name] = ``;
         }
+      }
   }
 
   ngOnInit() {
     this.getTableStateOfClaim();
+    this.getTableStateOfClaimTemplate();
+    this.getTableStateOfClaimActions();
     this.selection = new SelectionModel<ElementResult>(true, []);
   }
 
