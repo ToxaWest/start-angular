@@ -9,7 +9,7 @@ import {PdfToPrintTestComponent} from '../pdf-to-print-test/pdf-to-print-test.co
 @Component({
   selector: 'app-table-state-of-claim',
   templateUrl: './table-state-of-claim.component.html',
-  styleUrls: ['./table-state-of-claim.component.css'],
+  styleUrls: ['../table-dy/table-dy.component.css'],
   providers: [TableStateOfClaimService]
 })
 export class TableStateOfClaimComponent implements OnInit {
