@@ -1,7 +1,11 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import { User } from '../_models/';
+
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class UserService {
@@ -16,7 +20,7 @@ export class UserService {
     }
 
     create(user: User) {
-        return this.http.post('/api/users', user);
+        return this.http.post('http://217.12.219.175:3080/signup', user, httpOptions);
     }
 
     update(user: User) {
