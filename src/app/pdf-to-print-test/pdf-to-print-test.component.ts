@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'underscore';
-import { PdfTemplateService } from '../_services/pdf-template.service';
-import { TemplatesInterface } from '../_models/templates-interface';
+import { PdfTemplateService } from '../_services';
+import { TemplatesInterface } from '../_models';
 
 @Component({
   selector: 'app-pdf-to-print-test',
@@ -44,7 +44,7 @@ export class PdfToPrintTestComponent implements OnInit {
                       newTemplate = data[0].template
                           .replace(/&lt;/gm , '<' )
                           .replace(/&gt;/gm , '>');
-                      this.cteateTemplate(this._users , newTemplate);
+                      this.createTemplate(this._users , newTemplate);
                   }
               );
       } else if (useTemplate === 'claim_order_request') {
@@ -53,7 +53,7 @@ export class PdfToPrintTestComponent implements OnInit {
                   newTemplate = data[0].template
                         .replace(/&lt;/gm , '<' )
                         .replace(/&gt;/gm , '>');
-                  this.cteateTemplate(this._users , newTemplate);
+                  this.createTemplate(this._users , newTemplate);
                   }
               );
 
@@ -63,36 +63,24 @@ export class PdfToPrintTestComponent implements OnInit {
                       newTemplate = data[0].template
                           .replace(/&lt;/gm , '<' )
                           .replace(/&gt;/gm , '>');
-                      this.cteateTemplate(this._users , newTemplate);
+                      this.createTemplate(this._users , newTemplate);
                   }
               );
       } else {
           newTemplate = this._selectedTemplate.data
               .replace(/&lt;/gm , '<' )
               .replace(/&gt;/gm , '>');
-          this.cteateTemplate(this._users , newTemplate);
+          this.createTemplate(this._users , newTemplate);
       }
 
   }
 
-  cteateTemplate(user , newTemplate) {
+  createTemplate(user , newTemplate) {
       const template: any = [];
       const text_template = _.template(newTemplate);
       if (typeof user !== 'undefined') {
           for (let i = 0; i < user.length; i++) {
               user[i].todayDate = this.todayDate;
-              if (!user[i].address) {
-                  user[i].address = 'none';
-              }
-              if (!user[i].name) {
-                  user[i].name = 'none';
-              }
-              if (!user[i].number) {
-                  user[i].number = 'none';
-              }
-              if (!user[i].debt) {
-                  user[i].debt = 'none';
-              }
               const Templete = text_template(user[i]);
               template.push(
                   Templete

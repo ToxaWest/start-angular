@@ -4,7 +4,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialAppModule } from './ngmaterial.module';
-import { ExpandComponent } from './expand/expand.component';
 import { NgxEditorModule } from 'ngx-editor';
 // Components //
 import { AppComponent } from './app.component';
@@ -12,11 +11,11 @@ import { TableDyComponent, TableDyModalDialogComponent } from './table-dy/table-
 import {EditPdfTemplateComponent, SafeHtmlPipe} from './edit-pdf-template/edit-pdf-template.component';
 import {PdfToPrintTestComponent} from './pdf-to-print-test/pdf-to-print-test.component';
 import {TableStateOfClaimComponent} from './table-state-of-claim/table-state-of-claim.component';
+import { ExpandComponent } from './expand/expand.component';
 import { AlertComponent } from './_directives/';
 import { HomeComponent } from './home/';
 import { LoginComponent } from './login/';
 import { RegisterComponent } from './register/';
-
 // Services //
 import { fakeBackendProvider } from './_helpers/';
 import { routing } from './app.routing';
@@ -30,8 +29,6 @@ import {
   TableDyService,
   TableStateOfClaimService
 } from './_services/';
-
-
 
 @NgModule({
   declarations: [

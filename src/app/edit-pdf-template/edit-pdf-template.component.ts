@@ -1,7 +1,5 @@
 import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
-import { PdfTemplateService } from '../_services/pdf-template.service';
-import { TableDyService } from '../_services/table-dy.service';
-import { TableStateOfClaimService} from '../_services/table-state-of-claim.service';
+import { PdfTemplateService, TableDyService, TableStateOfClaimService } from '../_services';
 import {Router} from '@angular/router';
 
 @Component({

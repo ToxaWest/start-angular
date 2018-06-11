@@ -1,8 +1,8 @@
 import {Component, NgModule, ViewChild, Inject, OnInit} from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource, MatDialog,  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
-import {Element, ElementResult} from '../_models/table-dy';
-import {TableDyService} from '../_services/table-dy.service';
+import {Element, ElementResult} from '../_models';
+import {TableDyService} from '../_services';
 import {PdfToPrintTestComponent} from '../pdf-to-print-test/pdf-to-print-test.component';
 import {Router} from '@angular/router';
 import {SelectionModel} from '@angular/cdk/collections';
