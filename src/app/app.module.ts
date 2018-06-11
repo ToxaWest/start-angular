@@ -12,20 +12,25 @@ import { TableDyComponent, TableDyModalDialogComponent } from './table-dy/table-
 import {EditPdfTemplateComponent, SafeHtmlPipe} from './edit-pdf-template/edit-pdf-template.component';
 import {PdfToPrintTestComponent} from './pdf-to-print-test/pdf-to-print-test.component';
 import {TableStateOfClaimComponent} from './table-state-of-claim/table-state-of-claim.component';
-// Services //
-import {TableDyService} from './table-dy/table-dy.service';
-import {TableStateOfClaimService} from './table-state-of-claim/table-state-of-claim.service';
-
-import { fakeBackendProvider } from './_helpers/';
-import { routing } from './app.routing';
-
 import { AlertComponent } from './_directives/';
-import { AuthGuard } from './_guards/';
-import { JwtInterceptor } from './_helpers/';
-import { AlertService, AuthenticationService, UserService, PdfTemplateService } from './_services/';
 import { HomeComponent } from './home/';
 import { LoginComponent } from './login/';
 import { RegisterComponent } from './register/';
+
+// Services //
+import { fakeBackendProvider } from './_helpers/';
+import { routing } from './app.routing';
+import { AuthGuard } from './_guards/';
+import { JwtInterceptor } from './_helpers/';
+import {
+  AlertService,
+  AuthenticationService,
+  UserService,
+  PdfTemplateService,
+  TableDyService,
+  TableStateOfClaimService
+} from './_services/';
+
 
 
 @NgModule({

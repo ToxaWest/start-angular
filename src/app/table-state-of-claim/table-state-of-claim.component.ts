@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {TableStateOfClaimService} from './table-state-of-claim.service';
+import {TableStateOfClaimService} from '../_services/table-state-of-claim.service';
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
-import {ElementResult} from '../table-dy/table-dy';
+import {ElementResult} from '../_models/table-dy';
 import {Router} from '@angular/router';
 import {PdfToPrintTestComponent} from '../pdf-to-print-test/pdf-to-print-test.component';
 

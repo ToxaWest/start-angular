@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Results} from './table-state-of-claim';
+import {ElementResult, ElementActions, ElementTemplate, UpdateElement} from '../_models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs/observable/of';
-import {ElementActions, ElementTemplate, UpdateElement} from '../table-dy/table-dy';
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -15,8 +14,8 @@ export class TableStateOfClaimService {
 
   constructor(private http: HttpClient) { }
 
-  getTableStateOfClaim(): Observable<Results[]> {
-    return this.http.get<Results[]>(this.Url)
+  getTableStateOfClaim(): Observable<ElementResult[]> {
+    return this.http.get<ElementResult[]>(this.Url)
         .pipe(
             tap(TableStateOfClaim => TableStateOfClaim),
             catchError(this.handleError('getTableStateOfClaim', []))
