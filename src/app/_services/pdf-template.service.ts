@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TemplatesInterface } from './templates-interface';
+import { TemplatesInterface } from '../_models';
 import {Observable} from 'rxjs/Observable';
 import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs/observable/of';

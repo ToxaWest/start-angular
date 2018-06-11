@@ -14,6 +14,7 @@ export class AuthenticationService {
     login(login: string, password: string) {
         return this.http.post<any>('http://217.12.219.175:3080/signin', { login: login, password: password } , httpOptions)
             .map(user => {
+                console.log(user);
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes

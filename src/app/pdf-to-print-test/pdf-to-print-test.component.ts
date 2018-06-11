@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'underscore';
-import { PdfTemplateService } from '../services/pdf-template.service';
-import { TemplatesInterface } from '../services/templates-interface';
+import { PdfTemplateService } from '../_services/pdf-template.service';
+import { TemplatesInterface } from '../_models/templates-interface';
 
 @Component({
   selector: 'app-pdf-to-print-test',
