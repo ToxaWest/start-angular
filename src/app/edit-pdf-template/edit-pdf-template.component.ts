@@ -57,8 +57,15 @@ export class EditPdfTemplateComponent implements OnInit {
   }
 
   savePdf() {
+      this.selectedTemplateData.template = this.selectedTemplate;
       console.log(this.selectedTemplateData);
-      this.router.navigateByUrl('/' + this.selectedTemplateData.name);
+      if (this.selectedTemplateData.name === 'claim_order_request') {
+        this.pdfTemplateService.updateTemplateStateOfClaim(this.selectedTemplateData)
+            .subscribe(() => this.router.navigateByUrl('/' + this.selectedTemplateData.name));
+      } else if (this.selectedTemplateData.name === 'notification') {
+        this.pdfTemplateService.updateTemplateNotifications(this.selectedTemplateData)
+            .subscribe(() => this.router.navigateByUrl('/' + this.selectedTemplateData.name));
+      }
   }
 
 }
