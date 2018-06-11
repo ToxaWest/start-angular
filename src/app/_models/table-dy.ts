@@ -14,10 +14,6 @@ export interface ElementResult {
     sname: string;
     stname: string;
 }
-export interface ElementTemplate {
-    name: string;
-    template: string;
-}
 export interface ElementActions {
     name: string;
     action: string;
