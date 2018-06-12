@@ -19,6 +19,7 @@ export class PdfToPrintTestComponent implements OnInit {
   todayDate: any;
   data = [];
   template: TemplatesInterface[];
+    private withUserInfo: any;
 
   static getUsersPdf(selected: any) {
       this.users = selected;
@@ -86,8 +87,12 @@ export class PdfToPrintTestComponent implements OnInit {
       if (typeof user !== 'undefined') {
           for (let i = 0; i < user.length; i++) {
               user[i].todayDate = this.todayDate;
-              const withUserInfo = Object.assign(this._userData , user[i]);
-              const Template = text_template(withUserInfo);
+              if (this._userData) {
+                  this.withUserInfo = Object.assign(this._userData, user[i]);
+              } else {
+                  this.withUserInfo = user[i];
+              }
+              const Template = text_template(this.withUserInfo);
               template.push(
                   Template
               );
@@ -97,7 +102,9 @@ export class PdfToPrintTestComponent implements OnInit {
   }
 
   ngOnInit() {
-      this._userData = this.homeComponent.userData;
+     if (this.homeComponent.userData) {
+            this._userData = this.homeComponent.userData;
+        }
       this._selectedTemplate = PdfToPrintTestComponent._selectedTemplate;
       this._users = PdfToPrintTestComponent.users;
       this.makeTemplate(this._selectedTemplate);
