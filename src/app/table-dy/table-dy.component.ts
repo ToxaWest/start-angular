@@ -118,12 +118,7 @@ export class TableDyComponent implements OnInit {
     }
 
     UserAction(): void {
-        const putUsers = {'did': []};
-        for (let i = 0; i < this.selection.selected.length; i++) {
-            putUsers.did.push(this.selection.selected[i].did);
-        }
-        this.tableDyService.updateTableDy(putUsers)
-            .subscribe(() => this.router.navigateByUrl('/claim_order_request'));
+        this.actionDialog(this.selection.selected);
     }
 
     ngOnInit() {
@@ -140,6 +135,23 @@ export class TableDyComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
             console.log(result);
+        });
+    }
+
+    actionDialog(element: TableResult): void {
+        const actionDialogRef = this.dialog.open(ActionDialogComponent, {
+            width: '800px',
+            data: element
+        });
+        actionDialogRef.afterClosed().subscribe(result => {
+            if (result === 'confirm') {
+                const putUsers = {'did': []};
+                for (let i = 0; i < this.selection.selected.length; i++) {
+                    putUsers.did.push(this.selection.selected[i].did);
+                }
+                this.tableDyService.updateTableDy(putUsers)
+                    .subscribe(() => this.router.navigateByUrl('/claim_order_request'));
+            }
         });
     }
 
@@ -168,5 +180,26 @@ export class TableDyModalDialogComponent {
 
     onNoClick(): void {
         this.dialogRef.close();
+    }
+}
+
+
+@Component({
+    selector: 'app-to-action.component',
+    templateUrl: './to-action.component.html'
+})
+export class ActionDialogComponent {
+
+    constructor(
+        public dialogRef: MatDialogRef<ActionDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any) {
+    }
+
+    save(): void {
+        this.dialogRef.close('confirm');
+    }
+
+    onNoClick(): void {
+        this.dialogRef.close('close');
     }
 }

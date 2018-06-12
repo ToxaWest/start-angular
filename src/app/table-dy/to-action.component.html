@@ -1,0 +1,10 @@
+<h3 mat-dialog-title>Блокировка пользователя </h3>
+<mat-dialog-content>
+    <mat-form-field style="width: 100%">
+        <textarea matInput placeholder="Причина блокировки" rows="10"></textarea>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button (click)="save()">CONFIRM</button>
+    <button mat-raised-button (click)="onNoClick()">CANCEL</button>
+</mat-dialog-actions>
