@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import * as _ from 'underscore';
 import { PdfTemplateService } from '../_services';
 import { TemplatesInterface } from '../_models';
+import {HomeComponent} from '../home';
 
 @Component({
   selector: 'app-pdf-to-print-test',
   templateUrl: './pdf-to-print-test.component.html',
-  providers: [PdfTemplateService],
+  providers: [PdfTemplateService, HomeComponent],
 })
 export class PdfToPrintTestComponent implements OnInit {
 
@@ -14,6 +15,7 @@ export class PdfToPrintTestComponent implements OnInit {
   private static _selectedTemplate: any;
   _selectedTemplate: any;
   _users: any;
+  _userData: any;
   todayDate: any;
   data = [];
   template: TemplatesInterface[];
@@ -26,7 +28,10 @@ export class PdfToPrintTestComponent implements OnInit {
       this._selectedTemplate = selected;
   }
 
-  constructor(private pdfTemplateService: PdfTemplateService) {}
+  constructor(
+      private pdfTemplateService: PdfTemplateService,
+      private homeComponent: HomeComponent
+  ) {}
 
   getTodayDate() {
       const today = new Date();
@@ -81,9 +86,10 @@ export class PdfToPrintTestComponent implements OnInit {
       if (typeof user !== 'undefined') {
           for (let i = 0; i < user.length; i++) {
               user[i].todayDate = this.todayDate;
-              const Templete = text_template(user[i]);
+              const withUserInfo = Object.assign(this._userData , user[i]);
+              const Template = text_template(withUserInfo);
               template.push(
-                  Templete
+                  Template
               );
           }
       }
@@ -91,6 +97,7 @@ export class PdfToPrintTestComponent implements OnInit {
   }
 
   ngOnInit() {
+      this._userData = this.homeComponent.userData;
       this._selectedTemplate = PdfToPrintTestComponent._selectedTemplate;
       this._users = PdfToPrintTestComponent.users;
       this.makeTemplate(this._selectedTemplate);

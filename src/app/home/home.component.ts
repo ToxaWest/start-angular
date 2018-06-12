@@ -10,21 +10,25 @@ import { UserService } from '../_services';
 
 export class HomeComponent implements OnInit {
     currentUser: User;
-    users: User[] = [];
+    public userData;
+    // users: User[] = [];
 
     constructor(private userService: UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.userData = JSON.parse(this.currentUser.data)[0];
     }
 
     ngOnInit() {
-        this.loadAllUsers();
+        // this.userData = JSON.parse(this.currentUser.data)[0];
+        console.log(this.userData);
+        // this.loadAllUsers();
     }
-
-    deleteUser(id: number) {
-        this.userService.delete(id).subscribe(() => { this.loadAllUsers(); });
-    }
-
-    private loadAllUsers() {
-        this.userService.getAll().subscribe(users => { this.users = users; });
-    }
+    //
+    // deleteUser(id: number) {
+    //     this.userService.delete(id).subscribe(() => { this.loadAllUsers(); });
+    // }
+    //
+    // private loadAllUsers() {
+    //     this.userService.getAll().subscribe(users => { this.users = users; });
+    // }
 }

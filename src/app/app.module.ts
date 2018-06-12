@@ -8,19 +8,21 @@ import { NgxEditorModule } from 'ngx-editor';
 // Components //
 import { AppComponent } from './app.component';
 import { TableDyComponent, TableDyModalDialogComponent } from './table-dy/table-dy.component';
-import {EditPdfTemplateComponent, SafeHtmlPipe} from './edit-pdf-template/edit-pdf-template.component';
-import {PdfToPrintTestComponent} from './pdf-to-print-test/pdf-to-print-test.component';
-import {TableStateOfClaimComponent} from './table-state-of-claim/table-state-of-claim.component';
+import { EditPdfTemplateComponent, SafeHtmlPipe } from './edit-pdf-template/edit-pdf-template.component';
+import { PdfToPrintTestComponent } from './pdf-to-print-test/pdf-to-print-test.component';
+import { TableStateOfClaimComponent } from './table-state-of-claim/table-state-of-claim.component';
 import { ExpandComponent } from './expand/expand.component';
-import { AlertComponent } from './_directives/';
-import { HomeComponent } from './home/';
-import { LoginComponent } from './login/';
-import { RegisterComponent } from './register/';
-// Services //
-import { fakeBackendProvider } from './_helpers/';
+import { AlertComponent } from './_directives';
+import { HomeComponent } from './home';
+import { LoginComponent } from './login';
+import { RegisterComponent } from './register';
+// routing //
 import { routing } from './app.routing';
+// Guard //
 import { AuthGuard } from './_guards/';
+// Helpers //
 import { JwtInterceptor } from './_helpers/';
+// Services //
 import {
   AlertService,
   AuthenticationService,
@@ -28,7 +30,7 @@ import {
   PdfTemplateService,
   TableDyService,
   TableStateOfClaimService
-} from './_services/';
+} from './_services';
 
 @NgModule({
   declarations: [
@@ -66,9 +68,7 @@ import {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    },
-    // provider used to create fake backend
-    fakeBackendProvider
+    }
   ],
   entryComponents: [TableDyModalDialogComponent],
   bootstrap: [AppComponent]

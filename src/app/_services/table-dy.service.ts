@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Element, TemplatesInterface, ElementActions, UpdateElement} from '../_models/';
+import { TemplatesInterface, ElementActions, UpdateElement} from '../_models/';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 const httpOptions = {

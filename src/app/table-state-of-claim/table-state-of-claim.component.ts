@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {TableStateOfClaimService} from '../_services';
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
-import {ElementResult} from '../_models';
+import {TableResult} from '../_models';
 import {Router} from '@angular/router';
 import {PdfToPrintTestComponent} from '../pdf-to-print-test/pdf-to-print-test.component';
 
@@ -37,7 +37,7 @@ export class TableStateOfClaimComponent implements OnInit {
           }
       }
       const _this = this;
-      this.dataSource.filterPredicate = function (data: ElementResult) {
+      this.dataSource.filterPredicate = function (data: TableResult) {
           const boolean =
               data.bname.trim().toLowerCase().indexOf(_this.filteredData.bname) !== -1 &&
               data.dname.trim().toLowerCase().indexOf(_this.filteredData.dname) !== -1 &&
@@ -125,7 +125,7 @@ export class TableStateOfClaimComponent implements OnInit {
     this.getTableStateOfClaim();
     this.getTableStateOfClaimTemplate();
     this.getTableStateOfClaimActions();
-    this.selection = new SelectionModel<ElementResult>(true, []);
+    this.selection = new SelectionModel<TableResult>(true, []);
   }
 
   AfterViewInit() {

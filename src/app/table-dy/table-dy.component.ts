@@ -1,7 +1,7 @@
 import {Component, NgModule, ViewChild, Inject, OnInit} from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource, MatDialog,  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
-import {Element, ElementResult} from '../_models';
+import {Table, TableResult} from '../_models';
 import {TableDyService} from '../_services';
 import {PdfToPrintTestComponent} from '../pdf-to-print-test/pdf-to-print-test.component';
 import {Router} from '@angular/router';
@@ -43,7 +43,7 @@ export class TableDyComponent implements OnInit {
             }
         }
         const _this = this;
-        this.dataSource.filterPredicate = function (data: ElementResult) {
+        this.dataSource.filterPredicate = function (data: TableResult) {
             const boolean =
                 data.bname.trim().toLowerCase().indexOf(_this.filteredData.bname) !== -1 &&
                 data.dname.trim().toLowerCase().indexOf(_this.filteredData.dname) !== -1 &&
@@ -127,10 +127,10 @@ export class TableDyComponent implements OnInit {
         this.getTableDy();
         this.getTableDyTemplate();
         this.getTableDyActions();
-        this.selection = new SelectionModel<ElementResult>(true, []);
+        this.selection = new SelectionModel<TableResult>(true, []);
     }
 
-    openDialog(element: Element): void {
+    openDialog(element: Table): void {
         const dialogRef = this.dialog.open(TableDyModalDialogComponent, {
             width: '600px',
             data: element

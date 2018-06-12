@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ElementResult, ElementActions, TemplatesInterface, UpdateElement} from '../_models';
+import {TableResult, ElementActions, TemplatesInterface, UpdateElement} from '../_models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 const httpOptions = {
@@ -12,8 +12,8 @@ export class TableStateOfClaimService {
 
   constructor(private http: HttpClient) { }
 
-  getTableStateOfClaim(): Observable<ElementResult[]> {
-    return this.http.get<ElementResult[]>(this.Url);
+  getTableStateOfClaim(): Observable<TableResult[]> {
+    return this.http.get<TableResult[]>(this.Url);
   }
 
   getStateOfClaimTemplate(): Observable<TemplatesInterface[]> {

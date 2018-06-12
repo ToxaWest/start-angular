@@ -4,4 +4,5 @@
     last_name: string;
     login: string;
     password: string;
+    data: string;
 }

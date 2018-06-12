@@ -1,8 +1,8 @@
-export interface Element {
+export interface Table {
     results: any;
     structure: any;
 }
-export interface ElementResult {
+export interface TableResult {
     bname: string;
     did: number;
     dname: string;
