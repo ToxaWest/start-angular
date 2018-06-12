@@ -1,6 +1,6 @@
 import {Component, NgModule, ViewChild, Inject, OnInit} from '@angular/core';
-import { MatSort, MatPaginator, MatTableDataSource, MatDialog,  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { CdkTableModule } from '@angular/cdk/table';
+import {MatSort, MatPaginator, MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {CdkTableModule} from '@angular/cdk/table';
 import {Table, TableResult} from '../_models';
 import {TableDyService} from '../_services';
 import {PdfToPrintTestComponent} from '../pdf-to-print-test/pdf-to-print-test.component';
@@ -29,7 +29,7 @@ export class TableDyComponent implements OnInit {
     pdfTemplates;
     actions;
     selection;
-    filteredData: {[k: string]: any} = {};
+    filteredData: { [k: string]: any } = {};
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -44,17 +44,19 @@ export class TableDyComponent implements OnInit {
         }
         const _this = this;
         this.dataSource.filterPredicate = function (data: TableResult) {
-            const boolean =
-                data.bname.trim().toLowerCase().indexOf(_this.filteredData.bname) !== -1 &&
-                data.dname.trim().toLowerCase().indexOf(_this.filteredData.dname) !== -1 &&
-                data.fnum.trim().toLowerCase().indexOf(_this.filteredData.fnum) !== -1 &&
-                data.hname.trim().toLowerCase().indexOf(_this.filteredData.hname) !== -1 &&
-                data.hpart.trim().toLowerCase().indexOf(_this.filteredData.hpart) !== -1 &&
-                data.op_date.trim().toLowerCase().indexOf(_this.filteredData.op_date) !== -1 &&
-                data.saldo.toString().trim().toLowerCase().indexOf(_this.filteredData.saldo) !== -1 &&
-                data.stname.trim().toLowerCase().indexOf(_this.filteredData.stname) !== -1 &&
-                data.sname.trim().toLowerCase().indexOf(_this.filteredData.sname) !== -1 ;
-            return boolean;
+            let result = 1;
+            _this.structure.forEach(function (el) {
+                if (el.visible) {
+
+                    if (data.hasOwnProperty(el.name) && _this.filteredData.hasOwnProperty(el.name)) {
+                        const _res = (data[el.name].toString().trim().toLowerCase().indexOf(_this.filteredData[el.name]) !== -1);
+
+                        result = result * (_res ? 1 : 0);
+                    }
+
+                }
+            });
+            return result;
         };
         this.dataSource.filter = 'remove default filter';
     }
@@ -63,7 +65,8 @@ export class TableDyComponent implements OnInit {
         public dialog: MatDialog,
         private tableDyService: TableDyService,
         private router: Router
-    ) {}
+    ) {
+    }
 
     getTableDy(): void {
         this.tableDyService.getTableDy()
@@ -102,10 +105,10 @@ export class TableDyComponent implements OnInit {
 
     getDisplayColumns(columns) {
         for (let i = 0; i < columns.length; i++) {
-          if (columns[i].visible) {
-            this.displayedColumns.push(columns[i].name);
-            this.filteredData[columns[i].name] = ``;
-          }
+            if (columns[i].visible) {
+                this.displayedColumns.push(columns[i].name);
+                this.filteredData[columns[i].name] = ``;
+            }
         }
     }
 
@@ -151,6 +154,7 @@ export class TableDyComponent implements OnInit {
         this.dataSource.sort = this.sort;
     }
 }
+
 @Component({
     selector: 'app-table-dy-content-modal',
     templateUrl: './table-dy-popup.html'
@@ -159,7 +163,8 @@ export class TableDyModalDialogComponent {
 
     constructor(
         public dialogRef: MatDialogRef<TableDyModalDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any) { }
+        @Inject(MAT_DIALOG_DATA) public data: any) {
+    }
 
     onNoClick(): void {
         this.dialogRef.close();

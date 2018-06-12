@@ -8,7 +8,7 @@ import {PdfToPrintTestComponent} from '../pdf-to-print-test/pdf-to-print-test.co
 
 @Component({
   selector: 'app-table-state-of-claim',
-  templateUrl: './table-state-of-claim.component.html',
+  templateUrl: '../table-dy/table-dy.component.html',
   styleUrls: ['../table-dy/table-dy.component.css'],
   providers: [TableStateOfClaimService]
 })
@@ -38,17 +38,19 @@ export class TableStateOfClaimComponent implements OnInit {
       }
       const _this = this;
       this.dataSource.filterPredicate = function (data: TableResult) {
-          const boolean =
-              data.bname.trim().toLowerCase().indexOf(_this.filteredData.bname) !== -1 &&
-              data.dname.trim().toLowerCase().indexOf(_this.filteredData.dname) !== -1 &&
-              data.fnum.trim().toLowerCase().indexOf(_this.filteredData.fnum) !== -1 &&
-              data.hname.trim().toLowerCase().indexOf(_this.filteredData.hname) !== -1 &&
-              data.hpart.trim().toLowerCase().indexOf(_this.filteredData.hpart) !== -1 &&
-              data.op_date.trim().toLowerCase().indexOf(_this.filteredData.op_date) !== -1 &&
-              data.saldo.toString().trim().toLowerCase().indexOf(_this.filteredData.saldo) !== -1 &&
-              data.stname.trim().toLowerCase().indexOf(_this.filteredData.stname) !== -1 &&
-              data.sname.trim().toLowerCase().indexOf(_this.filteredData.sname) !== -1 ;
-          return boolean;
+          let result = 1;
+          _this.structure.forEach(function (el) {
+              if (el.visible) {
+
+                  if (data.hasOwnProperty(el.name) && _this.filteredData.hasOwnProperty(el.name)) {
+                      const _res = (data[el.name].toString().trim().toLowerCase().indexOf(_this.filteredData[el.name]) !== -1);
+
+                      result = result * (_res ? 1 : 0);
+                  }
+
+              }
+          });
+          return result;
       };
       this.dataSource.filter = 'remove default filter';
   }

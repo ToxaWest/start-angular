@@ -10,7 +10,7 @@ import { UserService } from '../_services';
 
 export class HomeComponent implements OnInit {
     currentUser: User;
-    public userData: object;
+    public userData;
     // users: User[] = [];
 
     constructor(private userService: UserService) {
