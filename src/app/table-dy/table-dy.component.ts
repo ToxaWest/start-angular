@@ -65,8 +65,7 @@ export class TableDyComponent implements OnInit {
         public dialog: MatDialog,
         private tableDyService: TableDyService,
         private router: Router
-    ) {
-    }
+    ) {}
 
     getTableDy(): void {
         this.tableDyService.getTableDy()

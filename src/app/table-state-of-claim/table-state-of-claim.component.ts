@@ -64,6 +64,7 @@ export class TableStateOfClaimComponent implements OnInit {
   getTableStateOfClaim(): void {
     this.tableStateOfClaimService.getTableStateOfClaim()
         .subscribe((data) => {
+            console.log(data);
             this.data = data;
             this.dataSource = new MatTableDataSource(this.data.results);
             this.AfterViewInit();
