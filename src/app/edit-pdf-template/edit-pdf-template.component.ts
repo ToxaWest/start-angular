@@ -39,13 +39,15 @@ export class EditPdfTemplateComponent implements OnInit {
   }
 
   selectPdf(templates): void {
-    if (templates.template === 'claim_order_request') {
+      console.log(templates);
+    if (templates.name === 'claim_order_request') {
         this.pdfTemplateService.getTemplateStateOfClaim()
             .subscribe(data => {
+                console.log(data);
                 this.selectedTemplateData = data[0];
                 this.selectedTemplate = this.selectedTemplateData.template;
             });
-    } else if (templates.template === 'notification') {
+    } else if (templates.name === 'notification') {
         this.pdfTemplateService.getTemplateNotifications()
             .subscribe(data => {
                 this.selectedTemplateData = data[0];
