@@ -43,42 +43,17 @@ export class PdfToPrintTestComponent implements OnInit {
   }
 
   makeTemplate (useTemplate) {
+      console.log(useTemplate);
       let newTemplate: any;
-      if (typeof useTemplate === 'undefined') {
-          this.pdfTemplateService.getTemplateNotifications()
-              .subscribe(data => {
-                      newTemplate = data[0].template
-                          .replace(/&lt;/gm , '<' )
-                          .replace(/&gt;/gm , '>');
-                      this.createTemplate(this._users , newTemplate);
-                  }
-              );
-      } else if (useTemplate === 'claim_order_request') {
-          this.pdfTemplateService.getTemplateStateOfClaim()
-              .subscribe(data => {
-                  newTemplate = data[0].template
-                        .replace(/&lt;/gm , '<' )
-                        .replace(/&gt;/gm , '>');
+      this.pdfTemplateService.getTemplateAll(useTemplate)
+          .subscribe(data => {
+              console.log(data);
+                  newTemplate = data.template
+                      .replace(/&lt;/gm , '<' )
+                      .replace(/&gt;/gm , '>');
                   this.createTemplate(this._users , newTemplate);
-                  }
-              );
-
-      } else if (useTemplate === 'notification') {
-          this.pdfTemplateService.getTemplateNotifications()
-              .subscribe(data => {
-                      newTemplate = data[0].template
-                          .replace(/&lt;/gm , '<' )
-                          .replace(/&gt;/gm , '>');
-                      this.createTemplate(this._users , newTemplate);
-                  }
-              );
-      } else {
-          newTemplate = this._selectedTemplate.data
-              .replace(/&lt;/gm , '<' )
-              .replace(/&gt;/gm , '>');
-          this.createTemplate(this._users , newTemplate);
-      }
-
+              }
+          );
   }
 
   createTemplate(user , newTemplate) {

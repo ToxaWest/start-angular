@@ -39,33 +39,17 @@ export class EditPdfTemplateComponent implements OnInit {
   }
 
   selectPdf(templates): void {
-      console.log(templates);
-    if (templates.name === 'claim_order_request') {
-        this.pdfTemplateService.getTemplateStateOfClaim()
-            .subscribe(data => {
-                console.log(data);
-                this.selectedTemplateData = data[0];
-                this.selectedTemplate = this.selectedTemplateData.template;
-            });
-    } else if (templates.name === 'notification') {
-        this.pdfTemplateService.getTemplateNotifications()
-            .subscribe(data => {
-                this.selectedTemplateData = data[0];
-                this.selectedTemplate = this.selectedTemplateData.template;
-            });
-    }
+    this.pdfTemplateService.getTemplateAll(templates.name)
+        .subscribe(data => {
+            this.selectedTemplateData = data;
+            this.selectedTemplate = this.selectedTemplateData.template;
+        });
   }
 
   savePdf() {
       this.selectedTemplateData.template = this.selectedTemplate;
-      console.log(this.selectedTemplateData);
-      if (this.selectedTemplateData.name === 'claim_order_request') {
-        this.pdfTemplateService.updateTemplateStateOfClaim(this.selectedTemplateData)
+        this.pdfTemplateService.updateTemplateAll(this.selectedTemplateData)
             .subscribe(() => this.router.navigateByUrl('/' + this.selectedTemplateData.name));
-      } else if (this.selectedTemplateData.name === 'notification') {
-        this.pdfTemplateService.updateTemplateNotifications(this.selectedTemplateData)
-            .subscribe(() => this.router.navigateByUrl('/' + this.selectedTemplateData.name));
-      }
   }
 
 }

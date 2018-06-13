@@ -155,6 +155,7 @@ export class TableDyComponent implements OnInit {
     }
 
     PrintPdf(template): void {
+        console.log(template);
         PdfToPrintTestComponent.getSelectedPdf(template);
         PdfToPrintTestComponent.getUsersPdf(this.selection.selected);
         this.router.navigateByUrl('/pdf-to-print');

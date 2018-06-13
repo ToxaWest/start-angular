@@ -12,19 +12,12 @@ export class PdfTemplateService {
   constructor(
       private http: HttpClient) { }
 
-  getTemplateNotifications(): Observable<TemplatesInterface[]> {
-      return this.http.get<TemplatesInterface[]>('http://217.12.219.175:3080/init/template/notification');
-  }
+    getTemplateAll(templateKey: string): Observable<any> {
+      const template = {name: templateKey};
+      return this.http.post('http://217.12.219.175:3080/template' , template , httpOptions);
+    }
 
-  updateTemplateNotifications(template: TemplatesInterface): Observable<any> {
-      return this.http.put('http://217.12.219.175:3080/init/template/notification', template , httpOptions);
-  }
-
-  getTemplateStateOfClaim(): Observable<TemplatesInterface[]> {
-      return this.http.get<TemplatesInterface[]>('http://217.12.219.175:3080/init/template/claim_order_request');
-  }
-
-  updateTemplateStateOfClaim(template: TemplatesInterface): Observable<any> {
-      return this.http.put('http://217.12.219.175:3080/init/template/claim_order_request', template , httpOptions);
-  }
+    updateTemplateAll(template: TemplatesInterface): Observable<any> {
+        return this.http.put('http://217.12.219.175:3080/template', template , httpOptions);
+    }
 }
