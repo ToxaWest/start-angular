@@ -4,10 +4,10 @@
 </nav>
 <br>
 <nav style="margin-bottom: 40px">
-  <a *ngFor="let menu of menuItems" mat-raised-button routerLink="/{{menu.name}}" routerLinkActive="active-link" >
+  <a *ngFor="let menu of menuItems" mat-raised-button routerLink="/{{menu.name}}" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active-link" >
       {{menu.title}}
       <div *ngIf="menu.type !== 'grid'" class="sublink">
-          <a *ngFor="let submenu of menu.type" mat-raised-button routerLink="/{{submenu.name}}" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active-link">{{submenu.title}}</a>
+          <a *ngFor="let submenu of menu.type" mat-raised-button routerLink="/{{menu.name}}/{{submenu.name}}" [routerLinkActiveOptions]="{ exact: true }"  routerLinkActive="active-link">{{submenu.title}}</a>
       </div>
   </a>
 </nav>

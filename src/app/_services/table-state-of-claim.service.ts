@@ -8,7 +8,7 @@ const httpOptions = {
 @Injectable()
 export class TableStateOfClaimService {
 
-  private Url = 'http://217.12.219.175:3080/claims_registry';
+  private Url = 'http://217.12.219.175:3080/grid/claims_registry';
 
   constructor(private http: HttpClient) { }
 

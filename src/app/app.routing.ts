@@ -11,9 +11,67 @@ import {TableStateOfClaimComponent} from './table-state-of-claim/table-state-of-
 
 const appRoutes: Routes = [
     { path: 'pdf-to-print', component: PdfToPrintTestComponent },
+    { path: 'claims_registry', component: TableStateOfClaimComponent },
     { path: 'edit-template', component: EditPdfTemplateComponent , canActivate: [AuthGuard]},
     { path: 'init', component: TableDyComponent},
-    { path: 'claims', component: TableStateOfClaimComponent },
+    {
+        path: 'claims',
+        children: [
+            { path: '', redirectTo: 'claims_registry', pathMatch: 'full' },
+            {
+                path: 'claims_registry',
+                component: TableStateOfClaimComponent,
+            },
+            {
+                path: 'claim_reject',
+                redirectTo: ''
+            },
+            {
+                path: 'claim_act',
+                redirectTo: ''
+            },
+            {
+                path: 'claim_accept',
+                redirectTo: ''
+            }
+        ]
+    },
+    {
+        path: 'dictates',
+        children: [
+            { path: '', redirectTo: 'dictates_registry', pathMatch: 'full' },
+            {
+                path: 'dictates_registry',
+                redirectTo: ''
+            },
+            {
+                path: 'dictates_reject',
+                redirectTo: ''
+            },
+            {
+                path: 'dictates_act',
+                redirectTo: ''
+            },
+            {
+                path: 'dictates_accept',
+                redirectTo: ''
+            }
+        ]
+    },
+    {
+        path: 'reports',
+        children: [
+            { path: '', redirectTo: 'report1', pathMatch: 'full' },
+            {
+                path: 'report1',
+                redirectTo: ''
+            },
+            {
+                path: 'report2',
+                redirectTo: ''
+            }
+        ]
+    },
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },

@@ -9,7 +9,7 @@ const httpOptions = {
 @Injectable()
 export class TableDyService {
 
-    private tableDyUrl = 'http://217.12.219.175:3080/init';
+    private tableDyUrl = 'http://217.12.219.175:3080/grid/init';
 
     constructor(private http: HttpClient) { }
 
