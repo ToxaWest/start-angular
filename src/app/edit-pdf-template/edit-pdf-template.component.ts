@@ -1,11 +1,11 @@
 import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
-import { PdfTemplateService, TableDyService, TableStateOfClaimService } from '../_services';
+import { PdfTemplateService } from '../_services';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit-pdf-template',
   templateUrl: './edit-pdf-template.component.html',
-  providers: [PdfTemplateService , TableDyService, TableStateOfClaimService],
+  providers: [PdfTemplateService],
 })
 export class EditPdfTemplateComponent implements OnInit {
 
@@ -16,22 +16,12 @@ export class EditPdfTemplateComponent implements OnInit {
 
   constructor(
       private pdfTemplateService: PdfTemplateService ,
-      private tableDyService: TableDyService,
-      private tableStateOfClaimService: TableStateOfClaimService,
       private router: Router
   ) {}
 
   getTemplates(): void {
-       this.tableDyService.getTableDyTemplate()
-          .subscribe(pdfTemplates => this.addTemplates(pdfTemplates));
-       this.tableStateOfClaimService.getStateOfClaimTemplate()
-          .subscribe(pdfTemplates => this.addTemplates(pdfTemplates));
-  }
-
-  addTemplates(template): void {
-      for (let i = 0 ; i < template.length; i++) {
-          this.template.push(template[i]);
-      }
+      this.pdfTemplateService.getTemplateKeys()
+          .subscribe(data => this.template = data);
   }
 
   ngOnInit() {

@@ -1,2 +1,11 @@
+<header id="header">
 <h1 routerLink="/">{{title}}</h1>
+<div *ngIf="userData !== 'logout'" class="user-info">
+    <span>{{userData.user_name}}</span>
+    <span>{{userData.district}}</span>
+</div>
+<div class="actions">
+    <p><a [routerLink]="['/login']"><span *ngIf="userData !== 'logout'">Logout</span></a></p>
+</div>
+</header>
 <app-menu-items></app-menu-items>

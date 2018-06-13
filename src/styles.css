@@ -77,4 +77,17 @@ button {
   display: flex;
   color: #171717;
 }
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#header .user-info {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+}
+#header .user-info span {
+  padding: 5px;
+}
 /*# sourceMappingURL=styles.css.map */

@@ -12,6 +12,10 @@ export class PdfTemplateService {
   constructor(
       private http: HttpClient) { }
 
+    getTemplateKeys(): Observable<TemplatesInterface[]> {
+      return this.http.get<TemplatesInterface[]>('http://217.12.219.175:3080/templates');
+    }
+
     getTemplateAll(templateKey: string): Observable<any> {
       const template = {name: templateKey};
       return this.http.post('http://217.12.219.175:3080/template' , template , httpOptions);
