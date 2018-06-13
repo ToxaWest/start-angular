@@ -16,6 +16,7 @@ import { AlertComponent } from './_directives';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
+import {MenuComponent} from './menu/menu.component';
 // routing //
 import { routing } from './app.routing';
 // Guard //
@@ -29,7 +30,8 @@ import {
   UserService,
   PdfTemplateService,
   TableDyService,
-  TableStateOfClaimService
+  TableStateOfClaimService,
+    MenuItemsService
 } from './_services';
 
 @NgModule({
@@ -39,6 +41,7 @@ import {
     TableDyComponent,
     TableDyModalDialogComponent,
       ActionDialogComponent,
+      MenuComponent,
     SafeHtmlPipe,
     PdfToPrintTestComponent,
     EditPdfTemplateComponent,
@@ -65,6 +68,7 @@ import {
     AlertService,
     AuthenticationService,
     UserService,
+      MenuItemsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

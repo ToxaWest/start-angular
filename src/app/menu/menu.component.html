@@ -1,0 +1,15 @@
+<nav>
+    <button mat-raised-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Главная</button>
+    <button mat-raised-button routerLink="/edit-template" routerLinkActive="active-link">Редактирование шаблонов</button>
+</nav>
+<br>
+<nav style="margin-bottom: 40px">
+  <a *ngFor="let menu of menuItems" mat-raised-button routerLink="/{{menu.name}}" routerLinkActive="active-link" >
+      {{menu.title}}
+      <div *ngIf="menu.type !== 'grid'" class="sublink">
+          <a *ngFor="let submenu of menu.type" mat-raised-button routerLink="/{{submenu.name}}" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active-link">{{submenu.title}}</a>
+      </div>
+  </a>
+</nav>
+<app-alert></app-alert>
+<router-outlet></router-outlet>

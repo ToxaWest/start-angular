@@ -12,8 +12,8 @@ import {TableStateOfClaimComponent} from './table-state-of-claim/table-state-of-
 const appRoutes: Routes = [
     { path: 'pdf-to-print', component: PdfToPrintTestComponent },
     { path: 'edit-template', component: EditPdfTemplateComponent , canActivate: [AuthGuard]},
-    { path: 'notification', component: TableDyComponent},
-    { path: 'claim_order_request', component: TableStateOfClaimComponent },
+    { path: 'init', component: TableDyComponent},
+    { path: 'claims', component: TableStateOfClaimComponent },
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },

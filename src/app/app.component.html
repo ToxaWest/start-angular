@@ -1,13 +1,2 @@
 <h1 routerLink="/">{{title}}</h1>
-<nav>
-    <button mat-raised-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Главная</button>
-    <button mat-raised-button routerLink="/edit-template" routerLinkActive="active-link">Редактирование шаблонов</button>
-</nav>
-<br>
-<nav>
-    <button mat-raised-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Общая информация</button>
-    <button mat-raised-button routerLink="/notification" routerLinkActive="active-link">Ду</button>
-    <button mat-raised-button routerLink="/claim_order_request" routerLinkActive="active-link">Исковые заявления</button>
-</nav>
-<app-alert></app-alert>
-<router-outlet></router-outlet>
+<app-menu-items></app-menu-items>
